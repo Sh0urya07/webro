@@ -1,0 +1,72 @@
+/* ============================================================
+   mobile-fixes.css — ADDITIVE phone/tablet refinements.
+   Loaded LAST so it overrides earlier rules via the cascade.
+   No other file is modified. Safe to remove to revert.
+   ============================================================ */
+
+/* ---- 1) Dynamic viewport height ----
+   Mobile browser chrome (address bar) makes 100vh unreliable and
+   causes gaps / overlap. Use small-viewport units where supported,
+   falling back to vh on older browsers. */
+@media (max-width: 760px) {
+  .hero { min-height: 100vh; min-height: 100svh; }
+}
+
+/* ---- 2) Showcase section ----
+   On desktop the 3D canvas is "pinned" (sticky) while text scrolls
+   over it. That overlay trick is fragile on phones, so on small
+   screens we switch to a simple, reliable stacked layout: a fixed-
+   height 3D canvas followed by the three text steps. The 3D still
+   assembles as you scroll through the section. */
+@media (max-width: 760px) {
+  #showcase-canvas {
+    position: relative;
+    top: 0;
+    height: 58vh;
+    height: 58svh;
+  }
+  /* cancel the desktop -100vh overlay so nothing collides */
+  .showcase-rail { margin-top: 0; }
+  .sc-step {
+    min-height: auto;
+    margin: 0 16px;
+    padding: 26px 0 40px;
+    text-align: left !important;
+    align-items: flex-start !important;
+  }
+  .sc-step p { font-size: 15.5px; }
+  .sc-hint { margin-top: 0; bottom: 12px; }
+}
+
+/* ---- 3) Tablet showcase ----
+   Between phone and desktop, just realign the overlay so the rail
+   pull-up matches the canvas height (prevents a tall blank gap). */
+@media (min-width: 761px) and (max-width: 980px) {
+  #showcase-canvas { height: 80vh; height: 80svh; top: 10vh; }
+  .showcase-rail { margin-top: -80vh; margin-top: -80svh; }
+  .sc-step { min-height: 86vh; min-height: 86svh; }
+}
+
+/* ---- 4) Prevent any accidental horizontal scrolling on phones ---- */
+@media (max-width: 760px) {
+  html, body { max-width: 100%; overflow-x: hidden; }
+  .wrap { overflow-x: clip; }
+}
+
+/* ---- 5) Comfortable tap targets + spacing on small screens ---- */
+@media (max-width: 620px) {
+  .btn { padding: 14px 20px; }
+  .menu-was-open, .mobile-menu a { padding-top: 14px; padding-bottom: 14px; }
+  /* keep floating buttons from crowding the chat launcher */
+  .floats { right: 14px; bottom: 14px; }
+  .chat-fab { left: 14px; bottom: 14px; }
+  .fab { width: 50px; height: 50px; }
+  .fab svg { width: 24px; height: 24px; }
+}
+
+/* ---- 6) Hero text never clipped on very small phones ---- */
+@media (max-width: 420px) {
+  .hero h1 { font-size: clamp(34px, 11vw, 46px); }
+  .hero-strip { gap: 16px; }
+  .hero-strip b { font-size: 18px; }
+}

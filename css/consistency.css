@@ -1,0 +1,76 @@
+/* ============================================================
+   consistency.css — ADDITIVE cross-OS / cross-browser normalizer.
+   Loaded LAST. Makes the site render the same on Windows, macOS,
+   iOS, Android, Chrome, Edge, Firefox & Safari. No other file is
+   modified; safe to remove to revert.
+   ============================================================ */
+
+/* ---- 1) Stop mobile browsers from auto-resizing text ----
+   iOS Safari / Android Chrome inflate font sizes on rotation and in
+   some layouts. Lock it so type is identical to desktop. */
+html {
+  -webkit-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;   /* no grey flash on tap (Android) */
+}
+
+/* ---- 2) Identical font smoothing on every OS ----
+   Windows and macOS render the same fonts differently. Force the
+   same antialiasing so weight/sharpness matches. */
+html, body, button, input, select, textarea {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-synthesis: none;                        /* don't fake bold/italic */
+}
+
+/* ---- 3) Normalize form controls ----
+   Selects, inputs, buttons are skinned by the OS by default. Strip
+   the native look so they match across platforms. (Class rules in
+   the section CSS keep their own colours — those win on specificity.) */
+button, input, select, textarea {
+  font-family: inherit;
+  font-size: 100%;
+  line-height: inherit;
+  margin: 0;
+}
+button { -webkit-appearance: none; appearance: none; }
+input, textarea { -webkit-appearance: none; appearance: none; border-radius: 0; }
+select { -webkit-appearance: none; -moz-appearance: none; appearance: none; }
+textarea { overflow: auto; }                   /* hide default IE scrollbar */
+::placeholder { opacity: 1; color: var(--ink-soft); }   /* consistent placeholder */
+input[type="search"]::-webkit-search-decoration { -webkit-appearance: none; }
+/* unify the accent of any native checkboxes/radios/range added later */
+input { accent-color: var(--lime-2); }
+
+/* ---- 4) Consistent, on-brand scrollbar ----
+   Default scrollbars look wildly different per OS. Give the same
+   slim lime scrollbar everywhere that supports it. */
+* { scrollbar-width: thin; scrollbar-color: var(--lime-2) transparent; }
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: var(--lime-2);
+  border-radius: 8px;
+  border: 2px solid var(--beige);
+}
+::-webkit-scrollbar-thumb:hover { background: var(--lime-deep); }
+
+/* ---- 5) Predictable media + sizing ----
+   Guarantees images/canvas/video never overflow and break layout,
+   regardless of device pixel ratio. */
+img, svg, video, canvas { max-width: 100%; height: auto; }
+canvas { height: auto; }     /* never let a 3D canvas force the page wider */
+*, *::before, *::after { box-sizing: border-box; }
+
+/* ---- 6) Stop pull-to-refresh / overscroll glow shifting layout ---- */
+html, body { overscroll-behavior-y: none; }
+
+/* ---- 7) Honour the loaded webfonts with a stable fallback metric ----
+   While Space Grotesk / DM Sans load, use a fixed system stack so the
+   layout doesn't jump between OSes. */
+body { font-family: "DM Sans", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif; }
+h1, h2, h3, h4, .display, .brand, .eyebrow, .btn {
+  font-family: "Space Grotesk", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+}
