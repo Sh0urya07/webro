@@ -1,0 +1,42 @@
+/* ============================================================
+   smooth-scroll.js — Lenis inertia scroll, bridged to GSAP
+   ScrollTrigger. Gracefully no-ops if Lenis isn't available or
+   the user prefers reduced motion.
+   Exposes the instance on window.__lenis for other modules.
+   ============================================================ */
+import { prefersReducedMotion } from './utils.js';
+
+export function initSmoothScroll() {
+  if (prefersReducedMotion()) return null;
+  if (typeof window.Lenis === 'undefined') return null;
+
+  const lenis = new window.Lenis({
+    duration: 1.15,
+    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+    smoothWheel: true,
+    touchMultiplier: 1.6,
+  });
+  window.__lenis = lenis;
+
+  // Drive Lenis from GSAP's ticker when GSAP is present (single RAF loop).
+  if (window.gsap && window.ScrollTrigger) {
+    lenis.on('scroll', window.ScrollTrigger.update);
+    window.gsap.ticker.add((time) => lenis.raf(time * 1000));
+    window.gsap.ticker.lagSmoothing(0);
+  } else {
+    const raf = (time) => { lenis.raf(time); requestAnimationFrame(raf); };
+    requestAnimationFrame(raf);
+  }
+
+  // Make in-page anchor links use Lenis.
+  document.querySelectorAll('a[href^="#"]').forEach((a) => {
+    a.addEventListener('click', (e) => {
+      const id = a.getAttribute('href');
+      if (!id || id === '#') return;
+      const target = document.querySelector(id);
+      if (target) { e.preventDefault(); lenis.scrollTo(target, { offset: -70 }); }
+    });
+  });
+
+  return lenis;
+}
