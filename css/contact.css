@@ -1,0 +1,57 @@
+/* ============================================================
+   contact.css — CTA banner, contact form, footer
+   ============================================================ */
+
+/* CTA */
+.cta-banner{padding:60px 50px;border-radius:28px;text-align:center;position:relative;overflow:hidden;background:linear-gradient(135deg,#5f8f1a,#3f6212);border:1px solid #365314}
+.cta-banner h2{font-size:clamp(28px,4.4vw,44px);font-weight:700;max-width:18ch;margin:0 auto;color:#fff}
+.cta-banner p{color:#e6efd0;margin:16px auto 30px;max-width:46ch;font-size:17px}
+.cta-banner .btn-ghost{background:rgba(255,255,255,.92);border-color:transparent}
+.cta-orbit{position:absolute;width:340px;height:340px;border-radius:50%;border:1px solid rgba(255,255,255,.22);top:-130px;right:-90px;animation:rot 34s linear infinite}
+.cta-orbit::before{content:"";position:absolute;width:12px;height:12px;border-radius:50%;background:rgba(255,255,255,.8);top:-6px;left:50%;transform:translateX(-50%)}
+@keyframes rot{to{transform:rotate(360deg)}}
+
+/* Contact */
+.contact{display:grid;grid-template-columns:1fr 1.1fr;gap:46px;align-items:start}
+.cinfo .row{display:flex;gap:15px;align-items:flex-start;padding:18px 0;border-bottom:1px solid var(--line)}
+.cinfo .ic{width:44px;height:44px;border-radius:12px;flex:0 0 auto;display:grid;place-items:center;background:linear-gradient(135deg,rgba(132,204,22,.22),rgba(163,230,53,.12));border:1px solid var(--glass-brd);color:var(--lime-deep)}
+.cinfo .ic svg{width:20px;height:20px}
+.cinfo .row b{font-family:"Space Grotesk";font-size:15px;display:block}
+.cinfo .row span{color:var(--ink-soft);font-size:14.5px}
+.cinfo .row a{color:var(--lime-deep)}
+.map{margin-top:22px;height:170px;border-radius:16px;border:1px solid var(--glass-brd);display:grid;place-items:center;background:linear-gradient(135deg,rgba(132,204,22,.12),rgba(251,247,238,.6));color:var(--ink-soft);font-size:14px;text-align:center;position:relative;overflow:hidden}
+.map .grid2{position:absolute;inset:0;background-image:linear-gradient(rgba(77,124,15,.12) 1px,transparent 1px),linear-gradient(90deg,rgba(77,124,15,.12) 1px,transparent 1px);background-size:30px 30px;opacity:.6}
+.map svg{width:30px;height:30px;color:var(--lime-deep);margin-bottom:8px}
+.cform{padding:30px;background:var(--cream)}
+.field{margin-bottom:16px}
+.field label{display:block;font-size:13.5px;color:#3f3d33;margin-bottom:7px;font-family:"Space Grotesk";font-weight:500}
+.field input,.field select,.field textarea{width:100%;padding:13px 15px;border-radius:11px;background:var(--beige-2);border:1px solid var(--glass-brd);color:var(--ink);font-family:"DM Sans";font-size:15px;transition:border-color .2s,box-shadow .2s}
+.field textarea{resize:vertical;min-height:110px}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--lime-2);box-shadow:0 0 0 3px rgba(132,204,22,.22)}
+.field select{appearance:none;cursor:pointer}
+.field .err{color:#b91c1c;font-size:12.5px;margin-top:6px;display:none}
+.field.invalid input,.field.invalid select,.field.invalid textarea{border-color:#b91c1c}
+.field.invalid .err{display:block}
+.grid2c{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.form-ok{display:none;padding:18px;border-radius:12px;background:rgba(132,204,22,.14);border:1px solid var(--lime-2);color:var(--lime-deep);font-size:14.5px;margin-top:14px;text-align:center}
+.form-ok.show{display:block;animation:okpop .5s var(--ease-spring)}
+@keyframes okpop{0%{opacity:0;transform:scale(.9)}100%{opacity:1;transform:scale(1)}}
+.check-anim{width:54px;height:54px;margin:0 auto 10px;border-radius:50%;background:var(--lime-2);display:grid;place-items:center}
+.check-anim svg{width:30px;height:30px;stroke:#fff;fill:none;stroke-width:3.5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:40;stroke-dashoffset:40}
+.form-ok.show .check-anim svg{animation:draw .5s ease .2s forwards}
+
+/* Footer */
+footer{border-top:1px solid var(--line);padding:60px 0 30px;margin-top:40px;background:var(--beige-2)}
+.foot{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:34px}
+.foot .brand{margin-bottom:14px}
+.foot .brand .logo-mark{width:30px;height:30px}
+.foot p{color:var(--ink-soft);font-size:14.5px;max-width:30ch}
+.foot h5{font-family:"Space Grotesk";font-size:14px;letter-spacing:.1em;text-transform:uppercase;color:#3f3d33;margin-bottom:16px}
+.foot ul{list-style:none;display:flex;flex-direction:column;gap:11px}
+.foot ul a,.foot ul span{color:var(--ink-soft);font-size:14.5px;transition:color .2s}
+.foot ul a:hover{color:var(--lime-deep)}
+.foot-bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;margin-top:44px;padding-top:24px;border-top:1px solid var(--line);color:var(--ink-soft);font-size:13.5px}
+.socials{display:flex;gap:10px}
+.socials a{width:38px;height:38px;border-radius:10px;display:grid;place-items:center;background:var(--cream);border:1px solid var(--glass-brd);color:var(--ink-soft);transition:.2s}
+.socials a:hover{color:var(--lime-deep);border-color:var(--lime-2);transform:translateY(-2px)}
+.socials svg{width:18px;height:18px}

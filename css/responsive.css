@@ -1,0 +1,28 @@
+/* ============================================================
+   responsive.css — breakpoints + reduced-motion (load LAST)
+   ============================================================ */
+@media(max-width:980px){
+  .menu{display:none}.burger{display:inline-flex}.call-btn span{display:none}
+  .svc-grid,.portfolio,.pricing{grid-template-columns:1fr 1fr}
+  .stats{grid-template-columns:1fr 1fr}
+  .why,.about,.contact{grid-template-columns:1fr;gap:34px}
+  .foot{grid-template-columns:1fr 1fr}.tilt > *{transform:none}
+}
+@media(max-width:620px){
+  .block{padding:70px 0}.hero{padding:120px 0 60px;min-height:88vh}
+  .svc-grid,.portfolio,.pricing,.grid2c,.vv{grid-template-columns:1fr}
+  .stats{grid-template-columns:1fr 1fr}
+  .cta-banner{padding:44px 24px}.foot{grid-template-columns:1fr}
+  .cform{padding:22px}.chat-fab span{display:none}.chat-fab{padding:14px}
+  .hero-strip{gap:22px}
+}
+
+/* Respect users who prefer less motion */
+@media(prefers-reduced-motion:reduce){
+  *{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.001ms !important;scroll-behavior:auto !important}
+  .reveal{opacity:1 !important;transform:none !important}
+  .marquee-track{animation:none !important}
+  .lp{stroke-dashoffset:0 !important}.lnode{transform:scale(1) !important}.globe{opacity:1 !important}
+  .load-word,.load-tag,.load-bar,.load-pct{opacity:1 !important}
+  .scroll-cue,.cta-orbit{display:none}
+}

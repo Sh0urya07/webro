@@ -1,0 +1,58 @@
+/* ============================================================
+   components.css — pricing, testimonials, faq, about
+   ============================================================ */
+
+/* Pricing */
+.pricing{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:stretch}
+.plan{padding:34px 28px;display:flex;flex-direction:column;background:var(--cream)}
+.plan.feat-plan{border-color:var(--lime-2);box-shadow:var(--glow);position:relative}
+.plan .ribbon{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,var(--lime-2),var(--lime));color:var(--ink);font-size:12px;font-weight:600;font-family:"Space Grotesk";padding:5px 14px;border-radius:999px;letter-spacing:.04em;white-space:nowrap}
+.plan h3{font-size:20px;font-weight:600}
+.plan .price{font-family:"Space Grotesk";font-weight:700;font-size:42px;margin:14px 0 4px}
+.plan .price small{font-size:15px;color:var(--ink-soft);font-weight:500}
+.plan .desc{color:var(--ink-soft);font-size:14px;min-height:42px}
+.plan ul{list-style:none;margin:22px 0 26px;display:flex;flex-direction:column;gap:12px}
+.plan li{display:flex;gap:11px;align-items:flex-start;font-size:14.5px;color:#3f3d33}
+.plan li svg{width:17px;height:17px;color:var(--lime-deep);flex:0 0 auto;margin-top:3px}
+.plan .btn{margin-top:auto;width:100%}
+
+/* Testimonials */
+.tslider{max-width:760px;margin:0 auto;position:relative;background:var(--cream)}
+.tcard{padding:40px 38px;text-align:center;display:none}
+.tcard.on{display:block;animation:tfade .5s ease}
+@keyframes tfade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.tcard .stars{color:var(--lime-2);letter-spacing:3px;margin-bottom:18px}
+.tcard q{font-family:"Space Grotesk";font-size:clamp(18px,2.6vw,23px);font-weight:500;line-height:1.5}
+.tcard .who{margin-top:24px;display:flex;align-items:center;justify-content:center;gap:13px}
+.tcard .av{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;font-family:"Space Grotesk";font-weight:700;background:linear-gradient(135deg,var(--lime-2),var(--lime));color:var(--ink)}
+.tcard .who b{font-family:"Space Grotesk";font-size:15px;display:block}
+.tcard .who span{color:var(--ink-soft);font-size:13.5px}
+.tdots{display:flex;gap:9px;justify-content:center;margin-top:28px;padding-bottom:28px}
+.tdots button{width:9px;height:9px;border-radius:50%;border:0;background:rgba(77,124,15,.22);cursor:pointer;transition:.2s;padding:0}
+.tdots button.on{background:var(--lime-2);width:26px;border-radius:6px}
+
+/* FAQ */
+.faq{max-width:760px;margin:0 auto;display:flex;flex-direction:column;gap:12px}
+.qa{border:1px solid var(--glass-brd);border-radius:14px;background:var(--cream);overflow:hidden}
+.qa button{width:100%;text-align:left;background:none;border:0;color:var(--ink);cursor:pointer;padding:20px 22px;display:flex;align-items:center;justify-content:space-between;gap:16px;font-family:"Space Grotesk";font-weight:500;font-size:16.5px}
+.qa .plus{width:22px;height:22px;flex:0 0 auto;position:relative;transition:transform .3s}
+.qa .plus::before,.qa .plus::after{content:"";position:absolute;background:var(--lime-deep);border-radius:2px}
+.qa .plus::before{top:50%;left:0;right:0;height:2px;transform:translateY(-50%)}
+.qa .plus::after{left:50%;top:0;bottom:0;width:2px;transform:translateX(-50%);transition:opacity .3s}
+.qa.open .plus{transform:rotate(180deg)}
+.qa.open .plus::after{opacity:0}
+.qa .ans{max-height:0;overflow:hidden;transition:max-height .35s ease}
+.qa .ans p{padding:0 22px 22px;color:var(--ink-soft);font-size:15px}
+
+/* About */
+.about{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:start}
+.about .lead{font-size:18px;color:#3f3d33;margin-bottom:18px}
+.about p{color:var(--ink-soft);margin-bottom:14px}
+.vv{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:8px}
+.vv .card{padding:24px;background:var(--cream)}
+.vv .card h4{font-size:17px;margin-bottom:8px;color:var(--lime-deep)}
+.vv .card p{font-size:14px;color:var(--ink-soft);margin:0}
+.founder{padding:26px;display:flex;gap:18px;align-items:center;margin-top:20px;background:var(--cream)}
+.founder .av{width:62px;height:62px;border-radius:16px;display:grid;place-items:center;font-family:"Space Grotesk";font-weight:700;font-size:24px;background:linear-gradient(135deg,var(--lime-2),var(--lime));color:var(--ink);flex:0 0 auto}
+.founder b{font-family:"Space Grotesk";font-size:18px}
+.founder span{color:var(--ink-soft);font-size:14px}

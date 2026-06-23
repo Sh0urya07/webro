@@ -1,0 +1,33 @@
+/* ============================================================
+   widgets.css — floating call/WhatsApp + AI chatbot
+   ============================================================ */
+.floats{position:fixed;right:22px;bottom:22px;z-index:300;display:flex;flex-direction:column;gap:12px}
+.fab{width:56px;height:56px;border-radius:50%;display:grid;place-items:center;cursor:pointer;transition:transform .2s}
+.fab:hover{transform:scale(1.08)}
+.fab svg{width:28px;height:28px;color:#fff}
+.fab.wa{background:#25D366;box-shadow:0 12px 30px -8px rgba(37,211,102,.6);animation:bob 4s ease-in-out infinite}
+.fab.call{background:linear-gradient(135deg,var(--lime-2),var(--lime-deep))}
+@keyframes bob{50%{transform:translateY(-4px)}}
+
+.chat-fab{position:fixed;left:22px;bottom:22px;z-index:300;display:inline-flex;align-items:center;gap:10px;padding:12px 18px 12px 14px;border-radius:999px;cursor:pointer;border:1px solid var(--lime-deep);background:linear-gradient(135deg,var(--lime-2),var(--lime));color:var(--ink);font-family:"Space Grotesk";font-weight:600;font-size:14px;box-shadow:0 12px 30px -12px rgba(101,163,13,.7);transition:transform .2s}
+.chat-fab:hover{transform:translateY(-2px)}
+.chat-fab svg{width:20px;height:20px}
+.chat-panel{position:fixed;left:22px;bottom:88px;z-index:301;width:330px;max-width:calc(100vw - 44px);background:var(--cream);border:1px solid var(--glass-brd);border-radius:18px;overflow:hidden;box-shadow:0 30px 70px -20px rgba(40,50,15,.5);display:none;flex-direction:column}
+.chat-panel.open{display:flex;animation:tfade .3s ease}
+.chat-head{padding:16px 18px;background:linear-gradient(135deg,var(--lime-2),var(--lime-deep));display:flex;align-items:center;gap:11px;color:#fff}
+.chat-head .av{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.22);display:grid;place-items:center;font-weight:700;font-family:"Space Grotesk"}
+.chat-head b{font-family:"Space Grotesk";font-size:15px;display:block;line-height:1.2}
+.chat-head span{font-size:12px;opacity:.9}
+.chat-head .x{margin-left:auto;cursor:pointer;opacity:.9;font-size:20px;background:none;border:0;color:#fff;line-height:1}
+.chat-body{padding:16px;display:flex;flex-direction:column;gap:11px;max-height:300px;overflow-y:auto}
+.msg{max-width:82%;padding:11px 14px;border-radius:14px;font-size:14px;line-height:1.45;word-wrap:break-word;overflow-wrap:anywhere}
+.msg.bot{background:var(--beige-2);border:1px solid var(--line);align-self:flex-start;border-bottom-left-radius:4px}
+.msg.user{background:linear-gradient(135deg,var(--lime-2),var(--lime));color:var(--ink);align-self:flex-end;border-bottom-right-radius:4px}
+.chat-quick{display:flex;gap:8px;flex-wrap:wrap;padding:0 16px 12px}
+.chat-quick button{font-size:12.5px;padding:7px 12px;border-radius:999px;background:var(--beige-2);border:1px solid var(--glass-brd);color:var(--lime-deep);cursor:pointer;font-family:"DM Sans";transition:.2s}
+.chat-quick button:hover{border-color:var(--lime-2);color:var(--ink)}
+.chat-input{display:flex;gap:8px;padding:12px 14px;border-top:1px solid var(--line)}
+.chat-input input{flex:1;padding:11px 13px;border-radius:10px;background:var(--beige-2);border:1px solid var(--glass-brd);color:var(--ink);font-family:"DM Sans";font-size:14px}
+.chat-input input:focus{outline:none;border-color:var(--lime-2)}
+.chat-input button{width:42px;border-radius:10px;border:0;background:linear-gradient(135deg,var(--lime-2),var(--lime-deep));color:#fff;cursor:pointer;display:grid;place-items:center}
+.chat-input svg{width:18px;height:18px}
