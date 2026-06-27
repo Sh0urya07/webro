@@ -232,7 +232,7 @@ export function initChatbot() {
   }
 
   /* ---- wire UI ---- */
-  const setOpen = (open) => { panel.classList.toggle('open', open); if (open && input) input.focus(); };
+  const setOpen = (open) => { panel.classList.toggle('open', open); fab.setAttribute('aria-expanded', String(open)); if (open && input) input.focus(); };
   fab.addEventListener('click', () => setOpen(!panel.classList.contains('open')));
   closeBtn?.addEventListener('click', () => setOpen(false));
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape') setOpen(false); });

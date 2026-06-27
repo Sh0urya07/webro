@@ -22,6 +22,7 @@ import { initFaq } from './faq.js';
 import { initContactForm } from './contact-form.js';
 import { initChatbot } from './chatbot.js';
 import { initTilt } from './tilt.js';
+import { initWaterRipple } from './water-ripple.js';
 
 /* NOTE: the Three.js scenes are loaded with dynamic import() below — NOT
    statically — so that if the Three.js CDN ever fails to load, only the 3D
@@ -62,6 +63,7 @@ async function boot() {
   safe('contact-form', initContactForm);
   safe('chatbot', initChatbot);
   safe('tilt', () => initTilt(quality));
+  safe('water-ripple', initWaterRipple);
 
   // Pick up any `.reveal` / counter elements that the content modules
   // injected after initReveal() ran — otherwise injected cards (services,

@@ -12,7 +12,9 @@ export function initContactForm() {
 
   const value = (id) => ($(`#${id}`)?.value || '').trim();
   const setErr = (id, bad) => {
-    $(`#${id}`)?.closest('.field')?.classList.toggle('invalid', bad);
+    const el = $(`#${id}`);
+    el?.closest('.field')?.classList.toggle('invalid', bad);
+    el?.setAttribute('aria-invalid', String(bad));
     return !bad;
   };
 
@@ -38,5 +40,8 @@ export function initContactForm() {
 
   // clear error as the user fixes a field
   $$('input, select, textarea', form).forEach((f) =>
-    f.addEventListener('input', () => f.closest('.field')?.classList.remove('invalid')));
+    f.addEventListener('input', () => {
+      f.closest('.field')?.classList.remove('invalid');
+      f.setAttribute('aria-invalid', 'false');
+    }));
 }

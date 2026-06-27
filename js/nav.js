@@ -18,6 +18,7 @@ export function initNav() {
     const setOpen = (open) => {
       mobileMenu.classList.toggle('open', open);
       burger.setAttribute('aria-expanded', String(open));
+      mobileMenu.setAttribute('aria-hidden', String(!open));
     };
     burger.addEventListener('click', () =>
       setOpen(!mobileMenu.classList.contains('open')));
