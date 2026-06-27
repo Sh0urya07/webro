@@ -6,13 +6,13 @@ import { $ } from './utils.js';
 const CHECK = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12l4 4 10-10"/></svg>';
 
 const PLANS = [
-  { name: 'Starter', price: '₹14,999', per: 'one-time', feat: false,
+  { name: 'Starter', price: '$299', per: 'one-time', feat: false,
     desc: 'A clean, fast landing site to get you online.',
     items: ['Up to 5 sections', 'Responsive design', 'Contact form', 'Basic SEO', '7-day delivery'] },
-  { name: 'Business', price: '₹39,999', per: 'one-time', feat: true,
+  { name: 'Business', price: '$699', per: 'one-time', feat: true,
     desc: 'A complete multi-page site with light 3D accents.',
     items: ['Up to 8 pages', '3D hero / accents', 'CMS or blog', 'Advanced SEO', 'Analytics setup', '2 weeks delivery'] },
-  { name: 'Premium 3D', price: '₹89,999+', per: 'project', feat: false,
+  { name: 'Premium 3D', price: '$1,499+', per: 'project', feat: false,
     desc: 'A full cinematic, interactive 3D experience.',
     items: ['Custom 3D experience', 'Scroll storytelling', 'Interactive product', 'Performance tuning', 'Priority support'] },
 ];

@@ -85,6 +85,10 @@ async function boot() {
     const { initShowcaseScene } = await import('./scene/showcase-scene.js');
     initShowcaseScene(quality);
   });
+  await safeAsync('bubbles-scene', async () => {
+    const { initBubblesScene } = await import('./scene/bubbles-scene.js');
+    initBubblesScene(quality);
+  });
 
   // ScrollTrigger may need a refresh once scenes/layout settle.
   if (window.ScrollTrigger) {

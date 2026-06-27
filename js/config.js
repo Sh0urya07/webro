@@ -5,10 +5,10 @@
 
 export const BRAND = {
   name: 'WEBRO',
-  phone: '+917073701158',
-  phoneDisplay: '+91 70737 01158',
+  phone: '+916377093356',
+  phoneDisplay: '+91 63770 93356',
   email: 'webro284@gmail.com',
-  city: 'Jaipur, India',
+  city: 'Online · Worldwide',
 };
 
 /* 3D palette (hex ints for three.js) — mirrors css/tokens.css */
@@ -37,8 +37,8 @@ export const TECHS = [
 ];
 
 export const CHAT_REPLIES = {
-  pricing: "Our plans start at ₹14,999 (Starter), ₹39,999 (Business), and ₹89,999+ (Premium 3D). Every project gets a free custom quote — want me to point you to the form?",
+  pricing: "Our plans start at $299 (Starter), $699 (Business), and $1,499+ (Premium 3D). Every project gets a free custom quote — want me to point you to the form?",
   time: "Most websites go live in 7–14 days. 3D experiences, e-commerce and apps take 3–6 weeks. We'll confirm an exact timeline in your free quote.",
   services: "We do 3D / WebGL experiences, Website Development, UI/UX & Logo Design, E-commerce, Mobile Apps, SEO & Marketing, and AI Automation. Which one fits your project?",
-  contact: "Call or WhatsApp us at +91 70737 01158, or email webro284@gmail.com. We reply within one business day!",
+  contact: "Call or WhatsApp us at +91 63770 93356, or email webro284@gmail.com. We reply within one business day!",
 };

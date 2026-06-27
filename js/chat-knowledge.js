@@ -16,15 +16,15 @@
 
 export const BUSINESS = {
   name: 'WEBRO',
-  phone: '+917073701158',
-  phoneDisplay: '+91 70737 01158',
+  phone: '+916377093356',
+  phoneDisplay: '+91 63770 93356',
   email: 'webro284@gmail.com',
-  city: 'Jaipur, India',
+  city: 'Online · Worldwide',
   hours: 'Mon–Sat, 10am–7pm IST (we reply to messages anytime)',
   plans: {
-    starter: { price: '₹14,999', blurb: 'a clean, fast landing site (up to 5 sections)', time: '5–7 days' },
-    business: { price: '₹39,999', blurb: 'a full multi-page site with light 3D accents', time: '~2 weeks' },
-    premium: { price: '₹89,999+', blurb: 'a full cinematic, interactive 3D experience', time: '3–6 weeks' },
+    starter: { price: '$299', blurb: 'a clean, fast landing site (up to 5 sections)', time: '5–7 days' },
+    business: { price: '$699', blurb: 'a full multi-page site with light 3D accents', time: '~2 weeks' },
+    premium: { price: '$1,499+', blurb: 'a full cinematic, interactive 3D experience', time: '3–6 weeks' },
   },
   proof: '120+ projects delivered, 90+ happy clients across 12+ countries, 4.9/5 average rating',
   services: ['3D / WebGL experiences', 'Website development', 'UI/UX & logo design',
@@ -68,10 +68,10 @@ export const SMALLTALK = [
 ];
 
 export const OBJECTIONS = [
-  { kw: ['expensive', 'too much', 'costly', 'high price', 'out of budget', 'cant afford', 'lower price', 'discount', 'cheaper'], a: ["I hear you 🙂 We price for results — most clients earn the cost back through more enquiries and sales. We also have a ₹14,999 Starter plan and can phase the work to fit your budget. What budget did you have in mind? I'll tailor something."] },
+  { kw: ['expensive', 'too much', 'costly', 'high price', 'out of budget', 'cant afford', 'lower price', 'discount', 'cheaper'], a: ["I hear you 🙂 We price for results — most clients earn the cost back through more enquiries and sales. We also have a $299 Starter plan and can phase the work to fit your budget. What budget did you have in mind? I'll tailor something."] },
   { kw: ['thinking', 'think about it', 'not sure', 'maybe later', 'ill get back', 'consider'], a: ["Totally fair to think it over 👍 If it helps, I can send a free no-obligation quote and a couple of sample concepts so you have something concrete to weigh. Want me to set that up?"] },
   { kw: ['competitor', 'other company', 'someone else', 'freelancer', 'fiverr', 'cheaper elsewhere'], a: ["Plenty of options out there 🙂 What sets WEBRO apart is real 3D/WebGL craft, 90+ PageSpeed performance, and support that lasts past launch — " + BUSINESS.proof + ". Want to compare a quick quote against what you've been offered?"] },
-  { kw: ['trust', 'scam', 'legit', 'genuine', 'reliable', 'safe'], a: ["Great question — trust matters. We're a Jaipur-based studio with " + BUSINESS.proof + ", clear milestones, and a contract. We can start small to prove ourselves. Want me to share a couple of references and a quote?"] },
+  { kw: ['trust', 'scam', 'legit', 'genuine', 'reliable', 'safe'], a: ["Great question — trust matters. We're a remote studio with" + BUSINESS.proof + ", clear milestones, and a contract. We can start small to prove ourselves. Want me to share a couple of references and a quote?"] },
   { kw: ['why you', 'why should', 'why choose', 'what makes you', 'better than'], a: ["Honestly? Three things: cinematic 3D most agencies can't do, obsessive performance & accessibility, and we actually stick around after launch. Plus " + BUSINESS.proof + ". Shall I show you what that'd look like for your project?"] },
 ];
 
@@ -79,11 +79,11 @@ export const OBJECTIONS = [
    normalisation), a (answer — string or array of variants). Keep answers
    warm, specific, and usually ending with a forward-moving question. */
 export const INTENTS = [
-  { id: 'pricing', kw: ['price', 'how much', 'how much do you charge'], a: ["Here's our pricing 👇\n• Starter — ₹14,999 (landing site)\n• Business — ₹39,999 (full multi-page + light 3D)\n• Premium 3D — ₹89,999+ (cinematic interactive experience)\nEvery project gets a free custom quote. What type of project is it, so I can point you to the right one?"] },
-  { id: 'price_website', kw: ['price', 'website'], a: ["A standard website runs ₹14,999–₹39,999 depending on pages and features. A 3D/animated one starts around ₹89,999. Tell me roughly how many pages and whether you want 3D, and I'll narrow it down."] },
-  { id: 'price_ecom', kw: ['price', 'ecommerce'], a: ["E-commerce stores typically start around ₹39,999 and scale with the number of products and integrations (payments, shipping, inventory). How many products are you planning to sell?"] },
-  { id: 'price_app', kw: ['price', 'app'], a: ["Mobile apps are quoted per scope — simple apps start around ₹89,999, bigger ones more. What should the app do? I'll give you a ballpark."] },
-  { id: 'price_3d', kw: ['price', '3d'], a: ["A full 3D / WebGL experience starts at ₹89,999+ and depends on how many interactive scenes you want. Want me to suggest a scope that fits your budget?"] },
+  { id: 'pricing', kw: ['price', 'how much', 'how much do you charge'], a: ["Here's our pricing 👇\n• Starter — $299 (landing site)\n• Business — $699 (full multi-page + light 3D)\n• Premium 3D — $1,499+ (cinematic interactive experience)\nEvery project gets a free custom quote. What type of project is it, so I can point you to the right one?"] },
+  { id: 'price_website', kw: ['price', 'website'], a: ["A standard website runs $299–$699 depending on pages and features. A 3D/animated one starts around $1,499. Tell me roughly how many pages and whether you want 3D, and I'll narrow it down."] },
+  { id: 'price_ecom', kw: ['price', 'ecommerce'], a: ["E-commerce stores typically start around $699 and scale with the number of products and integrations (payments, shipping, inventory). How many products are you planning to sell?"] },
+  { id: 'price_app', kw: ['price', 'app'], a: ["Mobile apps are quoted per scope — simple apps start around $1,499, bigger ones more. What should the app do? I'll give you a ballpark."] },
+  { id: 'price_3d', kw: ['price', '3d'], a: ["A full 3D / WebGL experience starts at $1,499+ and depends on how many interactive scenes you want. Want me to suggest a scope that fits your budget?"] },
   { id: 'timeline', kw: ['time'], a: ["Timelines: a landing site goes live in 5–7 days, a full site in ~2 weeks, and 3D experiences, stores or apps in 3–6 weeks. When are you hoping to launch?"] },
   { id: 'services', kw: ['services', 'what do you do', 'what you offer', 'offerings'], a: ["We cover the whole journey: 3D/WebGL experiences, websites, UI/UX & logo design, e-commerce, mobile apps, SEO & marketing, and AI automation. Which one fits what you need?"] },
   { id: 'website', kw: ['website'], a: ["We build fast, modern, custom websites (Next.js/React) that look stunning and convert. 90+ PageSpeed, fully responsive, SEO-ready. Is this a new site or a redesign?"] },
@@ -97,13 +97,13 @@ export const INTENTS = [
   { id: 'start', kw: ['start'], a: ["Love it — let's get you started! 🚀 Quick question first so I can tailor things: what are you looking to build?", "Awesome, let's do this 🚀 Tell me what you need and I'll set up your free quote right away."] },
   { id: 'contact', kw: ['contact'], a: ["Easiest is WhatsApp or a call at " + BUSINESS.phoneDisplay + ", or email " + BUSINESS.email + ". Want me to prepare a WhatsApp message with your project details so the team can reply fast?"] },
   { id: 'support', kw: ['support'], a: ["Every plan includes post-launch support, and we offer ongoing maintenance (updates, fixes, improvements) if you want us to keep optimising. Are you asking for a new build or support on an existing site?"] },
-  { id: 'payment', kw: ['payment'], a: ["We usually take 50% to start and 50% at delivery, and accept UPI, bank transfer, and cards (international too). For larger projects we can split into milestones. Does that work for you?"] },
+  { id: 'payment', kw: ['payment'], a: ["We usually take 50% to start and 50% at delivery, and accept bank transfer, cards, and PayPal (international too). For larger projects we can split into milestones. Does that work for you?"] },
   { id: 'hosting', kw: ['hosting'], a: ["We handle hosting, domains and deployment for you, or set it up on your accounts — your choice. Hosting is often very low-cost or free for the sites we build. Do you already have a domain?"] },
   { id: 'domain', kw: ['domain', 'domain name'], a: ["We can register and connect your domain, or use one you already own. Have a name in mind? I can help you pick one too."] },
   { id: 'revisions', kw: ['revise'], a: ["Yes — revisions are included. We refine the design with you until it's right (each plan includes a set of revision rounds). Want to see how our process works?"] },
   { id: 'refund', kw: ['refund'], a: ["We work in milestones with your sign-off at each stage, so you're never paying for work you haven't approved. We'll always make it right. What's your concern — I'm happy to address it directly."] },
   { id: 'portfolio', kw: ['portfolio'], a: ["You can see selected work in the Work section of this site — 3D experiences, stores, apps and brand sites. Want me to send links to a couple most relevant to your industry?"] },
-  { id: 'location', kw: ['location'], a: ["We're based in Jaipur, India, and work with clients across 12+ countries fully online. Where are you located? We've likely worked in your timezone before."] },
+  { id: 'location', kw: ['location'], a: ["We work with clients across 12+ countries fully online. Where are you located? We've likely worked in your timezone before."] },
   { id: 'international', kw: ['international', 'abroad', 'foreign', 'overseas', 'usa', 'uk', 'dubai', 'canada', 'australia', 'europe'], a: ["Absolutely — we work with international clients every week across 12+ countries, all over email, WhatsApp and video calls with clear milestones. Which country are you in?"] },
   { id: 'meeting', kw: ['meeting'], a: ["Happy to set up a quick call or demo. The fastest way is WhatsApp at " + BUSINESS.phoneDisplay + " — want me to prep a message with your details so we can lock a time?"] },
   { id: 'process', kw: ['process', 'how do you work', 'steps', 'workflow', 'procedure', 'how it works'], a: ["Our process is simple: 1) Discovery & strategy → 2) Design & 3D concept → 3) Build & integrate → 4) Launch & optimise. You sign off at each stage. Want to kick off step 1 with a free quote?"] },
@@ -129,11 +129,11 @@ export const INTENTS = [
   { id: 'free_quote', kw: ['free quote', 'estimate', 'quotation', 'get quote'], a: ["Yes — quotes are 100% free and no-obligation. I can start one right now. What are you looking to build?"] },
   { id: 'discount_offer', kw: ['offer', 'deal', 'discount', 'coupon', 'promo'], a: ["We occasionally run offers and can flex on scope to fit budgets 🙂 Tell me your budget and what you need — I'll get you the best possible package."] },
   { id: 'urgent', kw: ['urgent', 'asap', 'rush', 'immediately', 'today', 'tomorrow', 'quickly'], a: ["We can fast-track urgent projects — a landing page can go live in as little as 2–3 days. What's your deadline? Let's make it happen."] },
-  { id: 'small_business', kw: ['small business', 'startup budget', 'low budget', 'tight budget'], a: ["We work with plenty of small businesses and startups — the ₹14,999 Starter is built exactly for that, and we can grow your site as you grow. What's your business?"] },
+  { id: 'small_business', kw: ['small business', 'startup budget', 'low budget', 'tight budget'], a: ["We work with plenty of small businesses and startups — the $299 Starter is built exactly for that, and we can grow your site as you grow. What's your business?"] },
   { id: 'enterprise', kw: ['enterprise', 'large project', 'big company', 'corporate'], a: ["We handle larger, complex builds too — multi-page platforms, integrations, custom 3D and ongoing support with clear SLAs. Want to set up a scoping call?"] },
   { id: 'accessibility', kw: ['accessibility', 'accessible', 'disabled', 'screen reader', 'wcag'], a: ["Accessibility is built in — keyboard navigation, screen-reader support, focus states and reduced-motion options. Is accessibility a specific requirement for you?"] },
   { id: 'security', kw: ['security', 'secure', 'hacking', 'ssl', 'https', 'protection'], a: ["Security comes standard — HTTPS/SSL, secure code, and best practices to protect your site and users' data. Any specific security needs (logins, payments)?"] },
-  { id: 'hosting_cost', kw: ['hosting cost', 'monthly cost', 'running cost', 'recurring'], a: ["Running costs are usually low — domain (~₹800–1,500/yr) and hosting that's often free or a few hundred rupees a month for the sites we build. Want exact numbers in your quote?"] },
+  { id: 'hosting_cost', kw: ['hosting cost', 'monthly cost', 'running cost', 'recurring'], a: ["Running costs are usually low — domain (~$12–20/yr) and hosting that's often free or a few dollars a month for the sites we build. Want exact numbers in your quote?"] },
   { id: 'maintenance_free', kw: ['free maintenance', 'free support', 'warranty'], a: ["Yes — every project includes a support window after launch at no extra cost to fix any issues. After that, optional maintenance keeps things fresh. Sound good?"] },
   { id: 'sample_work', kw: ['can i see', 'send samples', 'reference'], a: ["Of course — I can share relevant samples. What industry are you in, so I send the most useful ones?"] },
   { id: 'why_3d', kw: ['why 3d', 'benefit of 3d', 'need 3d', 'point of 3d'], a: ["3D makes people stop, explore and remember you — it boosts time-on-site and conversions and instantly signals a premium brand. Even subtle 3D accents lift a site hugely. Curious what it'd look like for you?"] },
