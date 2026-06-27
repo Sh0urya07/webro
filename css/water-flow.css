@@ -1,0 +1,98 @@
+/* ============================================================
+   water-flow.css — ADDITIVE. Liquid "water flow" motion.
+   • Buttons (.btn): continuous flowing sheen + water wave that
+     rises on hover/focus + click ripple (span from water-ripple.js).
+   • Placeholders: flowing text shimmer + flowing focus glow on
+     contact-form and chat inputs.
+   Purely cosmetic. Uses existing lime tokens. Loads LAST.
+   Fully disabled under prefers-reduced-motion.
+   ============================================================ */
+
+/* ---------- BUTTONS: layering so effects sit under the label ---------- */
+.btn{position:relative;overflow:hidden;isolation:isolate}
+.btn > svg{position:relative;z-index:1}   /* keep icon above the water layers */
+
+/* 1) Continuous flowing sheen — a soft highlight drifting across */
+.btn::before{
+  content:"";position:absolute;top:-60%;left:0;width:42%;height:220%;
+  background:linear-gradient(100deg,transparent 0%,rgba(255,255,255,.45) 50%,transparent 100%);
+  transform:translateX(-160%) rotate(9deg);filter:blur(3px);
+  z-index:-1;pointer-events:none;
+  animation:wf-sheen 4.8s ease-in-out infinite;
+}
+.btn-ghost::before{
+  background:linear-gradient(100deg,transparent 0%,rgba(132,204,22,.42) 50%,transparent 100%);
+}
+@keyframes wf-sheen{
+  0%{transform:translateX(-160%) rotate(9deg)}
+  60%,100%{transform:translateX(380%) rotate(9deg)}
+}
+
+/* 2) Water wave that rises to fill on hover / keyboard focus */
+.btn::after{
+  content:"";position:absolute;left:50%;bottom:-165%;width:200%;aspect-ratio:1/1;
+  transform:translateX(-50%);border-radius:43% 47% 44% 46%;
+  background:radial-gradient(circle at 50% 35%,rgba(163,230,53,.55),rgba(132,204,22,.26) 60%,transparent 72%);
+  opacity:0;z-index:-1;pointer-events:none;
+  transition:bottom .55s var(--ease-out),opacity .4s ease;
+}
+.btn:hover::after,
+.btn:focus-visible::after{bottom:-72%;opacity:1;animation:wf-wave 5s linear infinite}
+@keyframes wf-wave{to{transform:translateX(-50%) rotate(360deg)}}
+
+/* 3) Click ripple — span injected by js/water-ripple.js */
+.wf-ripple{
+  position:absolute;border-radius:50%;pointer-events:none;z-index:0;
+  transform:translate(-50%,-50%) scale(0);
+  background:radial-gradient(circle,rgba(255,255,255,.50) 0%,rgba(163,230,53,.28) 45%,transparent 70%);
+  animation:wf-ripple-go .6s ease-out forwards;
+}
+.btn-primary .wf-ripple{
+  background:radial-gradient(circle,rgba(255,255,255,.6) 0%,rgba(226,242,191,.35) 45%,transparent 70%);
+}
+@keyframes wf-ripple-go{to{transform:translate(-50%,-50%) scale(1);opacity:0}}
+
+/* Ripple containment for the pill buttons we also enhance */
+.filters button,.chat-quick button{position:relative;overflow:hidden}
+
+/* ---------- PLACEHOLDERS: flowing text shimmer ---------- */
+.field input::placeholder,
+.field textarea::placeholder,
+.chat-input input::placeholder{
+  color:#9aba55;opacity:.85;
+  animation:wf-ph 3.6s ease-in-out infinite;
+}
+@keyframes wf-ph{
+  0%,100%{color:#a7c267;opacity:.65}
+  50%{color:#5f8f1a;opacity:1}
+}
+
+/* ---------- FIELDS: flowing "water" focus glow ---------- */
+.field input:focus,
+.field select:focus,
+.field textarea:focus,
+.chat-input input:focus{
+  border-color:var(--lime-2);
+  animation:wf-focus 2.6s ease-in-out infinite;
+}
+@keyframes wf-focus{
+  0%,100%{box-shadow:0 0 0 3px rgba(132,204,22,.22),0 0 14px -2px rgba(132,204,22,.25);border-color:var(--lime-2)}
+  50%{box-shadow:0 0 0 3px rgba(79,112,22,.32),0 0 20px -2px rgba(163,230,53,.42);border-color:var(--lime-deep)}
+}
+
+/* invalid state stays clearly red — overrides the flow while focused */
+.field.invalid input:focus,
+.field.invalid select:focus,
+.field.invalid textarea:focus{
+  animation:none;border-color:#b91c1c;box-shadow:0 0 0 3px rgba(185,28,28,.18);
+}
+
+/* ---------- Respect prefers-reduced-motion ---------- */
+@media (prefers-reduced-motion:reduce){
+  .btn::before,.btn::after{animation:none!important;transition:none!important;opacity:0!important}
+  .wf-ripple{display:none!important}
+  .field input::placeholder,
+  .field textarea::placeholder,
+  .chat-input input::placeholder{animation:none!important;color:#7d9a3f!important;opacity:.85!important}
+  .field input:focus,.field select:focus,.field textarea:focus,.chat-input input:focus{animation:none!important}
+}
