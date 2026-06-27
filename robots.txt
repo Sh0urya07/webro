@@ -1,0 +1,6 @@
+# robots.txt — WEBRO (https://webro.studio)
+User-agent: *
+Allow: /
+
+# No private areas on this static marketing site.
+Sitemap: https://webro.studio/sitemap.xml

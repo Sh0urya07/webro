@@ -1,0 +1,63 @@
+# ============================================================
+#  WEBRO — .htaccess (Apache / Hostinger)
+#  GitHub Pages ignores this file; it takes effect on Apache
+#  hosts such as Hostinger. Safe to keep in the repo either way.
+# ============================================================
+
+# --- Force HTTPS + canonical non-www (https://webro.studio) ---
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteCond %{HTTPS} off [OR]
+  RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
+  RewriteRule ^ https://webro.studio%{REQUEST_URI} [L,R=301]
+</IfModule>
+
+# --- Custom error page ---
+ErrorDocument 404 /404.html
+
+# --- Correct MIME types ---
+<IfModule mod_mime.c>
+  AddType image/svg+xml             .svg
+  AddType application/manifest+json .webmanifest
+  AddType image/x-icon              .ico
+</IfModule>
+
+# --- Compression ---
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/javascript application/javascript application/json image/svg+xml application/manifest+json text/plain application/xml application/rss+xml
+</IfModule>
+
+# --- Caching ---
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/css                  "access plus 1 year"
+  ExpiresByType application/javascript    "access plus 1 year"
+  ExpiresByType image/svg+xml             "access plus 1 year"
+  ExpiresByType image/png                 "access plus 1 year"
+  ExpiresByType image/x-icon              "access plus 1 year"
+  ExpiresByType image/jpeg                "access plus 1 year"
+  ExpiresByType application/manifest+json "access plus 1 week"
+  ExpiresByType text/html                 "access plus 0 seconds"
+</IfModule>
+
+# --- Security + cache headers ---
+<IfModule mod_headers.c>
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Permissions-Policy "geolocation=(), microphone=(), camera=(), interest-cohort=()"
+  Header always set X-Frame-Options "SAMEORIGIN"
+  Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+  Header always set Content-Security-Policy "default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob: https://flagcdn.com https://cdn.jsdelivr.net; connect-src 'self'; manifest-src 'self'; worker-src 'self' blob:; form-action 'self'; frame-ancestors 'self'; upgrade-insecure-requests"
+
+  <FilesMatch "\.(css|js|svg|png|ico|jpg|jpeg|webp|woff2)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+  <FilesMatch "\.(html|webmanifest)$">
+    Header set Cache-Control "public, max-age=0, must-revalidate"
+  </FilesMatch>
+</IfModule>
+
+# --- Hide dev/source files from public serving (Apache already blocks .ht*) ---
+<FilesMatch "\.(bat|md)$">
+  Require all denied
+</FilesMatch>

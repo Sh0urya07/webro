@@ -86,3 +86,28 @@ Notes:
 ## Wiring the contact form to a backend
 
 `js/contact-form.js` validates and shows a success state but does not send anywhere yet. Replace the marked hook with a `fetch()` to your endpoint (Formspree, a serverless function, etc.).
+
+> If you point the form at an external endpoint, add that origin to **`connect-src`** and **`form-action`** in both the `<meta>` CSP in `index.html` and the `.htaccess` header — otherwise the browser will block the request.
+
+## Production hardening (this build)
+
+Canonical domain is **https://webro.studio** (matches `CNAME`). The following were added — all non‑visual:
+
+* **Favicons / PWA** — the complete icon set ships in this folder and is wired into `index.html`: `favicon.svg`, `favicon.ico` (multi-size 16–256), `favicon-16x16.png`, `favicon-32x32.png`, `apple-touch-icon.png`, `android-chrome-192/512.png`, `maskable-512.png`, `mstile-150x150.png`, plus the 1200×630 `og-image.png` and `site.webmanifest`.
+* **SEO** — corrected canonical/OG domain, full Open Graph + Twitter tags with a 1200×630 share image, enriched JSON‑LD, `robots.txt`, `sitemap.xml`, branded `404.html`.
+* **Security** — Content‑Security‑Policy as an in‑page `<meta>` (works on GitHub Pages) and as full headers in `.htaccess` (Hostinger), plus `crossorigin`/`referrerpolicy` on the CDN scripts.
+* **GitHub Pages** — `.nojekyll` added. `.htaccess` is ignored there (Apache‑only) and applies on Hostinger.
+
+### Add Subresource Integrity to the CDN scripts (recommended)
+
+Run, then paste each `integrity="sha384-…"` onto the matching `<script>` (they already have `crossorigin`):
+
+```bash
+for u in \
+  https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js \
+  https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js \
+  https://cdn.jsdelivr.net/npm/lenis@1.0.42/dist/lenis.min.js ; do
+  echo "$u"; curl -fsSL "$u" | openssl dgst -sha384 -binary | openssl base64 -A; echo; done
+```
+
+See `WEBRO-AUDIT-REPORT.md` for the full audit, severity list, and deployment checklist.
