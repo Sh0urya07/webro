@@ -1,9 +1,6 @@
 /* ============================================================
    nav.css — top call bar, header, desktop menu, mobile menu
    ============================================================ */
-.topbar{background:linear-gradient(90deg,var(--lime-deep),var(--lime-2));color:#fff;font-size:13.5px;text-align:center;padding:8px 14px;position:relative;z-index:201;font-family:"Space Grotesk";font-weight:500}
-.topbar a{font-weight:700;text-decoration:underline;text-underline-offset:2px}
-
 header{position:fixed;top:0;left:0;right:0;z-index:200;transition:background .35s,border-color .35s,backdrop-filter .35s,box-shadow .35s}
 header.scrolled{background:rgba(251,247,238,.82);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line);box-shadow:0 6px 24px -18px rgba(40,50,15,.5)}
 .nav{display:flex;align-items:center;justify-content:space-between;height:70px}
@@ -21,7 +18,7 @@ header.scrolled{background:rgba(251,247,238,.82);backdrop-filter:blur(14px);-web
 .burger{display:none;background:none;border:0;color:var(--ink);cursor:pointer;padding:8px}
 .burger svg{width:26px;height:26px}
 
-.mobile-menu{display:none;position:fixed;inset:auto 0 auto 0;top:112px;z-index:199;background:rgba(251,247,238,.98);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line);padding:20px 22px 26px}
+.mobile-menu{display:none;position:fixed;inset:auto 0 auto 0;top:70px;z-index:199;background:rgba(251,247,238,.98);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line);padding:20px 22px 26px}
 .mobile-menu.open{display:block;animation:fadein-y .25s ease}
 .mobile-menu a{display:block;padding:13px 0;color:var(--ink-soft);font-family:"Space Grotesk";font-weight:500;border-bottom:1px solid var(--line)}
 .mobile-menu .btn{margin-top:16px;width:100%}

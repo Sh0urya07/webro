@@ -35,6 +35,8 @@
 .grid2c{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 .form-ok{display:none;padding:18px;border-radius:12px;background:rgba(132,204,22,.14);border:1px solid var(--lime-2);color:var(--lime-deep);font-size:14.5px;margin-top:14px;text-align:center}
 .form-ok.show{display:block;animation:okpop .5s var(--ease-spring)}
+.form-send{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:14px}
+.form-send .btn{flex:1 1 auto;min-width:150px}
 @keyframes okpop{0%{opacity:0;transform:scale(.9)}100%{opacity:1;transform:scale(1)}}
 .check-anim{width:54px;height:54px;margin:0 auto 10px;border-radius:50%;background:var(--lime-2);display:grid;place-items:center}
 .check-anim svg{width:30px;height:30px;stroke:#fff;fill:none;stroke-width:3.5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:40;stroke-dashoffset:40}

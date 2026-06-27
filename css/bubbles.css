@@ -1,0 +1,49 @@
+/* ============================================================
+   bubbles.css — ADDITIVE. Site-wide "bubble" UI/UX:
+   pill eyebrows, bubblier rounded cards, speech-bubble
+   testimonials, softer fields, and the CTA 3D-bubble canvas
+   layering. Pure styling — no layout structure changes.
+   Loads after water-flow.css; re-themes via the --r token.
+   ============================================================ */
+
+/* 1) Bubblier corners everywhere the radius token is used */
+:root{ --r:26px; }
+
+/* 2) Eyebrows become soft bubble pills (present in every section) */
+.eyebrow{
+  background:rgba(132,204,22,.14);
+  border:1px solid var(--glass-brd);
+  padding:7px 15px;border-radius:999px;line-height:1;
+}
+
+/* 3) Round the common card families a touch more */
+.plan,.qa,.svc-grid > *,.portfolio > *,.why-visual,.vv .card,.cform,.glass{
+  border-radius:26px;
+}
+.qa{overflow:hidden}
+
+/* 4) Pills / chips fully rounded */
+.pill,.vchip,.tech-chip,.flag{border-radius:999px}
+
+/* 5) Testimonials as a real speech bubble */
+.tslider{background:transparent;border:0;box-shadow:none;-webkit-backdrop-filter:none;backdrop-filter:none}
+.tcard q{quotes:none}
+.tcard blockquote{
+  position:relative;display:inline-block;max-width:620px;margin:0 auto;
+  background:var(--cream);border:1px solid var(--glass-brd);border-radius:26px;
+  padding:26px 30px;box-shadow:var(--shadow);
+}
+.tcard blockquote::after{
+  content:"";position:absolute;left:50%;bottom:-11px;
+  width:22px;height:22px;background:var(--cream);
+  border-right:1px solid var(--glass-brd);border-bottom:1px solid var(--glass-brd);
+  border-bottom-right-radius:7px;transform:translateX(-50%) rotate(45deg);
+}
+.tcard .who{margin-top:30px}
+
+/* 6) Form fields a little bubblier to match */
+.field input,.field select,.field textarea,.chat-input input{border-radius:14px}
+
+/* 7) CTA 3D bubble canvas — sits behind the banner text */
+#bubbles-canvas{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+.cta-banner h2,.cta-banner p,.cta-banner .hero-cta{position:relative;z-index:2}
