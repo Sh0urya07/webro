@@ -70,3 +70,17 @@
   .hero-strip { gap: 16px; }
   .hero-strip b { font-size: 18px; }
 }
+
+/* ---- 7) Performance: drop costly GPU effects on phones ----
+   backdrop-filter blur (many glass cards) and the huge blurred blobs are
+   the biggest cause of scroll jank on mobile. Swap them for cheap solids. */
+@media (max-width: 760px) {
+  .glass, header.scrolled, .mobile-menu, .chat-panel {
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+  }
+  .glass { background: rgba(255, 255, 255, .82); }
+  header.scrolled { background: rgba(251, 247, 238, .97); }
+  .mobile-menu { background: rgba(251, 247, 238, .99); }
+  .bg-fx .blob { display: none; }
+}
