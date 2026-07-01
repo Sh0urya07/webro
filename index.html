@@ -7,15 +7,17 @@
 <!-- Content Security Policy (defense-in-depth; mirrors the host headers in .htaccess) -->
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob: https://flagcdn.com https://cdn.jsdelivr.net; connect-src 'self'; manifest-src 'self'; worker-src 'self' blob:; form-action 'self'; upgrade-insecure-requests" />
 
-<title>WEBRO | Immersive 3D Web Experiences, Design & AI</title>
-<meta name="description" content="WEBRO crafts cinematic 3D websites, immersive product experiences, UI/UX, e-commerce, apps & AI automation. Serving clients worldwide." />
+<title>WEBRO — 3D Web Design Studio | Immersive Websites, Apps & AI</title>
+<meta name="description" content="WEBRO is a 3D web design studio crafting immersive WebGL websites, custom web development, UI/UX, e-commerce, mobile apps, SEO & AI automation worldwide." />
 <meta name="author" content="WEBRO" />
-<meta name="keywords" content="3D website, WebGL, immersive web design, UI/UX, e-commerce, mobile apps, AI automation, web design studio" />
+<meta name="keywords" content="3D website design, WebGL development, Three.js website, immersive web experiences, interactive 3D website, custom website development, Next.js developer, React development, UI/UX design, logo design, brand identity, e-commerce development, Shopify developer, WooCommerce, online store development, mobile app development, React Native app, SEO services, technical SEO, AI automation, chatbot development, web design agency, web design studio, conversion optimization, responsive web design, landing page design" />
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
 <meta name="theme-color" content="#F1EBDD" />
 <meta name="color-scheme" content="light" />
 <meta name="format-detection" content="telephone=no" />
 <link rel="canonical" href="https://webro.studio/" />
+<link rel="sitemap" type="application/xml" title="Sitemap" href="sitemap.xml" />
+<meta name="rating" content="general" />
 
 <!-- Icons / PWA -->
 <link rel="icon" href="favicon.ico" sizes="any" />
@@ -81,18 +83,61 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "ProfessionalService",
-  "name": "WEBRO",
-  "url": "https://webro.studio/",
-  "logo": "https://webro.studio/android-chrome-512x512.png",
-  "image": "https://webro.studio/og-image.png",
-  "description": "Immersive 3D web experiences, UI/UX design, e-commerce, mobile apps and AI automation.",
-  "telephone": "+91-63770-93356",
-  "email": "webro284@gmail.com",
-  "priceRange": "$$",
-  "areaServed": "Worldwide",
-  "contactPoint": { "@type": "ContactPoint", "telephone": "+91-63770-93356", "contactType": "sales", "areaServed": "Worldwide", "availableLanguage": ["en", "hi"] },
-  "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.9", "reviewCount": "90" }
+  "@graph": [
+    {
+      "@type": ["Organization", "ProfessionalService"],
+      "@id": "https://webro.studio/#organization",
+      "name": "WEBRO",
+      "alternateName": "WEBRO Studio",
+      "url": "https://webro.studio/",
+      "logo": { "@type": "ImageObject", "url": "https://webro.studio/android-chrome-512x512.png", "width": 512, "height": 512 },
+      "image": "https://webro.studio/og-image.png",
+      "email": "webro284@gmail.com",
+      "telephone": "+91-63770-93356",
+      "description": "WEBRO is a 3D web design studio building immersive WebGL websites, custom web development, e-commerce stores, mobile apps, UI/UX design, SEO and AI automation for brands worldwide.",
+      "slogan": "Build Smart. Grow Faster. Powered by AI.",
+      "priceRange": "$$",
+      "areaServed": "Worldwide",
+      "knowsAbout": ["3D web design", "WebGL development", "Three.js", "interactive websites", "UI/UX design", "logo design", "e-commerce development", "Shopify", "mobile app development", "React Native", "SEO", "AI automation", "conversion optimization"],
+      "serviceType": ["3D / WebGL Experiences", "Website Development", "UI/UX & Logo Design", "E-commerce Stores", "SEO & Digital Marketing", "AI Automation"],
+      "contactPoint": { "@type": "ContactPoint", "telephone": "+91-63770-93356", "contactType": "sales", "areaServed": "Worldwide", "availableLanguage": ["en", "hi"] },
+      "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.9", "reviewCount": "90", "bestRating": "5" },
+      "review": [
+        { "@type": "Review", "author": { "@type": "Person", "name": "Aarav M." }, "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" }, "reviewBody": "WEBRO turned our boring site into an experience people actually talk about. Bookings doubled." },
+        { "@type": "Review", "author": { "@type": "Person", "name": "Sara K." }, "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" }, "reviewBody": "The 3D product page is unreal - clients think we spent 10x what we did." },
+        { "@type": "Review", "author": { "@type": "Person", "name": "David R." }, "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" }, "reviewBody": "Fast, communicative, and genuinely talented. The smoothest web project we have ever run." }
+      ],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "WEBRO Plans",
+        "itemListElement": [
+          { "@type": "Offer", "name": "Starter", "priceCurrency": "USD", "price": "299", "description": "A clean, fast landing site to get you online.", "itemOffered": { "@type": "Service", "name": "Website Development" } },
+          { "@type": "Offer", "name": "Business", "priceCurrency": "USD", "price": "699", "description": "A complete multi-page site with light 3D accents.", "itemOffered": { "@type": "Service", "name": "Website Development" } },
+          { "@type": "Offer", "name": "Premium 3D", "priceCurrency": "USD", "price": "1499", "description": "A full cinematic, interactive 3D experience.", "itemOffered": { "@type": "Service", "name": "3D / WebGL Experience" } }
+        ]
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://webro.studio/#website",
+      "url": "https://webro.studio/",
+      "name": "WEBRO",
+      "description": "Immersive 3D web experiences, design, e-commerce, apps and AI automation.",
+      "publisher": { "@id": "https://webro.studio/#organization" },
+      "inLanguage": "en"
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://webro.studio/#faq",
+      "mainEntity": [
+        { "@type": "Question", "name": "How long does a project take?", "acceptedAnswer": { "@type": "Answer", "text": "Simple sites go live in 7-14 days. 3D experiences, e-commerce and apps typically take 3-6 weeks. You get an exact timeline in your free quote." } },
+        { "@type": "Question", "name": "Do you work with international clients?", "acceptedAnswer": { "@type": "Answer", "text": "Yes - we work with clients across 12+ countries. Everything runs over email, WhatsApp and video calls, with clear milestones." } },
+        { "@type": "Question", "name": "Will my 3D site be fast on mobile?", "acceptedAnswer": { "@type": "Answer", "text": "Absolutely. We use adaptive quality, lazy loading and mobile fallbacks so the experience stays smooth even on budget devices." } },
+        { "@type": "Question", "name": "What do you need to get started?", "acceptedAnswer": { "@type": "Answer", "text": "Just your goals and any brand assets you have. We handle strategy, design, 3D, build and launch from there." } },
+        { "@type": "Question", "name": "Do you provide support after launch?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Every plan includes post-launch support, and we offer ongoing maintenance if you want us to keep optimizing." } }
+      ]
+    }
+  ]
 }
 </script>
 
@@ -259,7 +304,7 @@ if (location.protocol === 'file:') {
 <!-- ============================ SERVICES ============================ -->
 <section class="block" id="services" aria-label="Services">
   <div class="wrap">
-    <div class="sec-head reveal"><span class="eyebrow">What We Do</span><h2>Everything you need to launch &amp; scale</h2><p>One team, six core services, and an AI-first approach that ships results — not just deliverables.</p></div>
+    <div class="sec-head reveal"><span class="eyebrow">What We Do</span><h2>Everything you need to launch &amp; scale</h2><p>From immersive 3D/WebGL websites and custom web development to e-commerce stores, mobile apps, UI/UX design, SEO and AI automation — one AI-first team that ships results, not just deliverables.</p></div>
     <div class="svc-grid" id="svcGrid"></div>
   </div>
 </section>
