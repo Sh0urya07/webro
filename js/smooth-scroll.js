@@ -4,10 +4,14 @@
    the user prefers reduced motion.
    Exposes the instance on window.__lenis for other modules.
    ============================================================ */
-import { prefersReducedMotion } from './utils.js';
+import { prefersReducedMotion, isMobile } from './utils.js';
 
 export function initSmoothScroll() {
   if (prefersReducedMotion()) return null;
+  // On touch / small screens, use NATIVE scroll. Lenis' inertia fights
+  // mobile scrolling and desyncs the scroll-driven 3D; native scroll is
+  // smoother here and keeps the showcase perfectly in step.
+  if (isMobile()) return null;
   if (typeof window.Lenis === 'undefined') return null;
 
   const lenis = new window.Lenis({

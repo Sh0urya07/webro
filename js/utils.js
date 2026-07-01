@@ -33,7 +33,7 @@ export function getQuality() {
     if (!gl) tier = 'low';
   } catch (e) { tier = 'low'; }
 
-  const dpr = Math.min(window.devicePixelRatio || 1, tier === 'high' ? 2 : 1.5);
+  const dpr = Math.min(window.devicePixelRatio || 1, mobile ? 1.25 : (tier === 'high' ? 2 : 1.5));
   return { tier, dpr, bloom: tier === 'high', mobile, reduced };
 }
 
