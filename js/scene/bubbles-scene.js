@@ -12,6 +12,9 @@ import { makeRenderer, onResize, RenderLoop } from './scene-utils.js';
 export function initBubblesScene(quality) {
   const canvas = document.getElementById('bubbles-canvas');
   if (!canvas) return;
+  // Decorative accent only — skip on phones/tablets so it doesn't add a
+  // 3rd WebGL context competing with the hero + showcase scenes.
+  if (quality.mobile) return;
 
   const host = canvas.closest('.cta-banner') || canvas.parentElement;
   const size = () => ({ w: host.clientWidth, h: host.clientHeight });

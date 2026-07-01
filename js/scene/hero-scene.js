@@ -98,8 +98,10 @@ export function initHeroScene(quality) {
     mx = cx / window.innerWidth - 0.5;
     my = cy / window.innerHeight - 0.5;
   };
-  window.addEventListener('mousemove', onMove, { passive: true });
-  window.addEventListener('touchmove', onMove, { passive: true });
+  if (!quality.mobile) {
+    window.addEventListener('mousemove', onMove, { passive: true });
+    window.addEventListener('touchmove', onMove, { passive: true });
+  }
 
   let t = 0;
   const render = () => (composer ? composer.render() : renderer.render(scene, camera));

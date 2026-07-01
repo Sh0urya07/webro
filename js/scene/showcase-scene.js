@@ -144,7 +144,11 @@ export function initShowcaseScene(quality) {
     targetProg = total > 0 ? scrolled / total : 0;
   };
 
-  if (window.gsap && window.ScrollTrigger && !quality.reduced) {
+  // Desktop: GSAP ScrollTrigger scrub. Mobile: read the scroll position
+  // every frame (in frame() below) — that tracks iOS momentum scrolling,
+  // where scroll events don't fire, so the 3D never lags or "sticks".
+  const useST = window.gsap && window.ScrollTrigger && !quality.reduced && !quality.mobile;
+  if (useST) {
     window.ScrollTrigger.create({
       trigger: section,
       start: 'top top',
@@ -153,7 +157,6 @@ export function initShowcaseScene(quality) {
       onUpdate: (self) => { targetProg = self.progress; },
     });
   } else {
-    window.addEventListener('scroll', setFromScroll, { passive: true });
     setFromScroll();
   }
 
@@ -164,7 +167,8 @@ export function initShowcaseScene(quality) {
 
   const frame = () => {
     time += 0.01;
-    progress = lerp(progress, targetProg, 0.08);
+    if (!useST) setFromScroll();       // RAF-driven scroll read (mobile/iOS momentum)
+    progress = lerp(progress, targetProg, 0.15);
     const a = easeInOut(progress);
 
     shards.forEach((m, i) => {
