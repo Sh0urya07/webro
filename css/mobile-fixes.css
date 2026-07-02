@@ -71,16 +71,30 @@
   .hero-strip b { font-size: 18px; }
 }
 
-/* ---- 7) Performance: drop costly GPU effects on phones ----
-   backdrop-filter blur (many glass cards) and the huge blurred blobs are
-   the biggest cause of scroll jank on mobile. Swap them for cheap solids. */
+/* ---- 7) Mobile polish + performance ----
+   backdrop-filter blur (many glass cards) and the blur(100px) blobs cause
+   scroll jank on phones. Keep the PREMIUM LOOK but make it cheap: frosted-
+   cream glass (no live blur) + a static gradient glow (no filter). */
 @media (max-width: 760px) {
   .glass, header.scrolled, .mobile-menu, .chat-panel {
     -webkit-backdrop-filter: none !important;
     backdrop-filter: none !important;
   }
-  .glass { background: rgba(255, 255, 255, .82); }
-  header.scrolled { background: rgba(251, 247, 238, .97); }
-  .mobile-menu { background: rgba(251, 247, 238, .99); }
+  .glass {
+    background: linear-gradient(180deg, rgba(255, 253, 248, .93), rgba(251, 247, 238, .85));
+  }
+  header.scrolled { background: rgba(251, 247, 238, .95); }
+  .mobile-menu { background: rgba(251, 247, 238, .98); }
+  .chat-panel { background: var(--cream); }
+
+  /* swap the 3 heavy blurred blobs for a FREE static gradient glow */
   .bg-fx .blob { display: none; }
+  .bg-fx::before {
+    content: "";
+    position: absolute; inset: 0; pointer-events: none;
+    background:
+      radial-gradient(40% 30% at 16% 10%, rgba(194, 217, 138, .32), transparent 72%),
+      radial-gradient(38% 30% at 86% 28%, rgba(231, 220, 192, .38), transparent 72%),
+      radial-gradient(44% 34% at 55% 94%, rgba(196, 210, 145, .24), transparent 72%);
+  }
 }

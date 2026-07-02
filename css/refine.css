@@ -1,0 +1,49 @@
+/* ============================================================
+   refine.css — ADDITIVE craft pass ("elevate the current look").
+   Typographic rhythm, hierarchy, tactile states, motion polish and
+   accessibility. Non-destructive; loads last. Brand palette unchanged.
+   ============================================================ */
+
+/* Crisper text rendering + graceful wrapping (progressive enhancement) */
+body { text-rendering: optimizeLegibility; -moz-osx-font-smoothing: grayscale; }
+p { text-wrap: pretty; }
+h1, h2, h3, h4, .display { text-wrap: balance; }
+
+/* Headings: refined optical tracking */
+h1 { letter-spacing: -.03em; }
+h2 { letter-spacing: -.022em; }
+.sec-head h2 { letter-spacing: -.025em; }
+.sec-head p { max-width: 54ch; margin-left: auto; margin-right: auto; }
+
+/* Eyebrow: crisper micro-label */
+.eyebrow { font-size: 12px; letter-spacing: .16em; }
+
+/* Prose links: comfortable underline offset */
+.cinfo .row a, .foot ul a, .msg-link { text-underline-offset: 3px; }
+
+/* Buttons: springier, more tactile */
+.btn { transition: transform .16s var(--ease-spring), box-shadow .25s, background .25s, border-color .2s; }
+.btn:active { transform: translateY(1px) scale(.99); }
+
+/* Consistent card lift + accent on hover */
+.svc:hover, .plan:hover, .vv .card:hover {
+  transform: translateY(-3px);
+  border-color: var(--lime-2);
+  box-shadow: var(--glow);
+}
+
+/* Stronger, more elegant focus ring (keeps accessibility high) */
+:focus-visible {
+  outline: 2px solid var(--lime-2);
+  outline-offset: 3px;
+  box-shadow: 0 0 0 4px rgba(132, 204, 22, .18);
+  border-radius: 8px;
+}
+
+/* A touch more vertical air on large screens */
+@media (min-width: 981px) { .block { padding: 104px 0; } }
+
+/* Respect reduced-motion for the added transitions */
+@media (prefers-reduced-motion: reduce) {
+  .btn, .svc, .plan, .vv .card { transition: none !important; }
+}

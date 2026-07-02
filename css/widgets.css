@@ -31,3 +31,39 @@
 .chat-input input:focus{outline:none;border-color:var(--lime-2)}
 .chat-input button{width:42px;border-radius:10px;border:0;background:linear-gradient(135deg,var(--lime-2),var(--lime-deep));color:#fff;cursor:pointer;display:grid;place-items:center}
 .chat-input svg{width:18px;height:18px}
+
+/* ============================================================
+   Nova — streaming, typing dots, rich cards, lead form
+   ============================================================ */
+.msg{white-space:pre-wrap}
+.msg.typing{display:inline-flex;gap:4px;align-items:center;padding:12px 14px;max-width:none}
+.msg.typing span{width:7px;height:7px;border-radius:50%;background:var(--lime-2);animation:nova-typing 1s infinite ease-in-out}
+.msg.typing span:nth-child(2){animation-delay:.15s}
+.msg.typing span:nth-child(3){animation-delay:.3s}
+@keyframes nova-typing{0%,60%,100%{transform:translateY(0);opacity:.4}30%{transform:translateY(-4px);opacity:1}}
+.msg-link{color:var(--lime-deep);font-weight:700;text-decoration:underline;text-underline-offset:2px}
+
+.nova-cards{display:flex;flex-direction:column;gap:8px;margin:2px 0 4px;align-self:stretch}
+.nova-card{border:1px solid var(--glass-brd);background:var(--beige-2);border-radius:16px;padding:12px 14px;text-align:left;width:100%;animation:nova-pop .3s var(--ease-out) both}
+@keyframes nova-pop{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.nova-svc{display:flex;align-items:flex-start;gap:10px;cursor:pointer;font-family:inherit;transition:border-color .2s,transform .15s,box-shadow .25s}
+.nova-svc:hover{border-color:var(--lime-2);transform:translateY(-1px);box-shadow:0 10px 24px -16px rgba(77,124,15,.5)}
+.nova-svc-main{flex:1;min-width:0}
+.nova-svc-name{font-family:"Space Grotesk";font-weight:600;font-size:14px;color:var(--ink)}
+.nova-svc-short{font-size:12.5px;color:var(--ink-soft);margin-top:2px;line-height:1.4}
+.nova-svc-meta{font-size:12px;font-weight:600;color:var(--lime-deep);margin-top:6px}
+.nova-arrow{flex:0 0 auto;color:var(--lime-2);margin-top:3px;transition:transform .2s}
+.nova-arrow svg{width:15px;height:15px}
+.nova-svc:hover .nova-arrow{transform:translateX(2px);color:var(--lime-deep)}
+.nova-case-industry{font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--lime-deep)}
+.nova-case-headline{font-family:"Space Grotesk";font-weight:600;font-size:13.5px;color:var(--ink);margin-top:3px}
+.nova-case-result{font-size:12.5px;color:var(--ink-soft);margin-top:4px;line-height:1.45}
+.nova-cta{display:inline-flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:12px 16px;border-radius:14px;border:0;cursor:pointer;font-family:"Space Grotesk";font-weight:600;font-size:14px;color:#fff;background:linear-gradient(135deg,#6aa717,#4D7C0F);box-shadow:0 10px 24px -14px rgba(77,124,15,.7);text-decoration:none;transition:transform .15s,box-shadow .25s}
+.nova-cta:hover{transform:translateY(-1px);box-shadow:0 16px 34px -14px rgba(77,124,15,.8)}
+.nova-cta svg{width:17px;height:17px}
+.nova-leadform{display:flex;flex-direction:column;gap:8px;border:1px solid var(--glass-brd);background:var(--beige-2);border-radius:16px;padding:12px}
+.nova-leadform input{width:100%;padding:10px 12px;border-radius:10px;border:1px solid var(--glass-brd);background:var(--cream);font-family:"DM Sans";font-size:13.5px;color:var(--ink)}
+.nova-leadform input:focus{outline:none;border-color:var(--lime-2);box-shadow:0 0 0 3px rgba(132,204,22,.2)}
+.nova-leadform.nova-invalid input:placeholder-shown{border-color:#d98a8a}
+.nova-ok{border:1px solid var(--lime-2);background:rgba(132,204,22,.14);border-radius:14px;padding:12px 14px;font-size:13px;color:var(--lime-deep);line-height:1.5}
+.nova-ok-link{color:var(--lime-deep);font-weight:700;text-decoration:underline}
