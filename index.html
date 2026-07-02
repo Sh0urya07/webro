@@ -78,6 +78,7 @@
 <link rel="stylesheet" href="css/variations.css" /><!-- additive: different entrance animation each refresh -->
 <link rel="stylesheet" href="css/water-flow.css" /><!-- additive: liquid water-flow buttons + placeholders -->
 <link rel="stylesheet" href="css/bubbles.css" /><!-- additive: site-wide bubble UI -->
+<link rel="stylesheet" href="css/refine.css" /><!-- additive: craft/elevate pass -->
 
 <!-- SEO structured data -->
 <script type="application/ld+json">
@@ -472,12 +473,12 @@ if (location.protocol === 'file:') {
 </div>
 
 <!-- AI chatbot -->
-<button class="chat-fab" id="chatFab" aria-haspopup="dialog" aria-controls="chatPanel" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><path d="M21 12a8 8 0 01-8 8H7l-4 3v-5a8 8 0 018-11h2a8 8 0 018 8z"/></svg> Ask WEBRO AI</button>
-<div class="chat-panel" id="chatPanel" role="dialog" aria-label="WEBRO AI chat" aria-modal="false">
-  <div class="chat-head"><div class="av">W</div><div><b>WEBRO AI</b><span>Typically replies instantly</span></div><button class="x" id="chatClose" aria-label="Close chat">×</button></div>
-  <div class="chat-body" id="chatBody"><div class="msg bot">Hi! How can I help you today? Ask me about services, pricing, or timelines 👋</div></div>
-  <div class="chat-quick"><button data-q="pricing">💰 Pricing</button><button data-q="time">⏱️ Timeline</button><button data-q="services">🛠️ Services</button><button data-q="contact">📞 Contact</button></div>
-  <div class="chat-input"><input id="chatInput" type="text" placeholder="Type a message…" aria-label="Type a message" /><button id="chatSend" aria-label="Send message"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4z"/></svg></button></div>
+<button class="chat-fab" id="chatFab" aria-haspopup="dialog" aria-controls="chatPanel" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><path d="M21 12a8 8 0 01-8 8H7l-4 3v-5a8 8 0 018-11h2a8 8 0 018 8z"/></svg> Ask Nova</button>
+<div class="chat-panel" id="chatPanel" role="dialog" aria-label="Nova — WEBRO's AI consultant" aria-modal="false">
+  <div class="chat-head"><div class="av">N</div><div><b>Nova</b><span>WEBRO's AI consultant · online</span></div><button class="x" id="chatClose" aria-label="Close chat">×</button></div>
+  <div class="chat-body" id="chatBody"><div class="msg bot">Hi, I'm Nova — WEBRO's AI consultant. I can help with services, pricing, timelines, our work, or getting your project started. What are you working on?</div></div>
+  <div class="chat-quick"><button data-q="pricing">Pricing</button><button data-q="services">Services</button><button data-q="portfolio">Our work</button><button data-q="meeting">Book a call</button></div>
+  <div class="chat-input"><input id="chatInput" type="text" placeholder="Ask Nova anything…" aria-label="Message Nova" /><button id="chatSend" aria-label="Send message"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4z"/></svg></button></div>
 </div>
 
 <!-- ============ Single module entry-point — wires every section module ============ -->
