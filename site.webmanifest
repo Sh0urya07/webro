@@ -1,0 +1,21 @@
+{
+  "name": "WEBRO — Immersive 3D Web Experiences",
+  "short_name": "WEBRO",
+  "description": "Cinematic 3D websites, UI/UX, e-commerce, apps & AI automation. Serving clients worldwide.",
+  "id": "/",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "lang": "en",
+  "dir": "ltr",
+  "background_color": "#F1EBDD",
+  "theme_color": "#F1EBDD",
+  "categories": ["business", "design", "technology"],
+  "icons": [
+    { "src": "favicon.svg", "type": "image/svg+xml", "sizes": "any", "purpose": "any" },
+    { "src": "android-chrome-192x192.png", "type": "image/png", "sizes": "192x192", "purpose": "any" },
+    { "src": "android-chrome-512x512.png", "type": "image/png", "sizes": "512x512", "purpose": "any" },
+    { "src": "maskable-512.png", "type": "image/png", "sizes": "512x512", "purpose": "maskable" }
+  ]
+}

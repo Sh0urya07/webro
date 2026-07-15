@@ -1,0 +1,41 @@
+# WEBRO
+
+> WEBRO (webro.studio) is a 3D web design studio that builds immersive, high‑converting websites and digital products for brands worldwide — WebGL/Three.js experiences, custom web development, UI/UX, e‑commerce, mobile apps, SEO, branding, AI automation and AI chatbots.
+
+WEBRO combines real‑time 3D, conversion‑first design and AI workflows. Work is milestone‑based with transparent, fixed‑scope pricing and post‑launch support. Clients own 100% of the code and design on final payment. Serving clients across 12+ countries, fully online.
+
+## Services
+- 3D / WebGL experiences — cinematic, interactive sites rendered live in the browser (Three.js). From $299.
+- Website design & development — fast, SEO‑ready sites on Next.js / React / Tailwind, Shopify, WordPress. From $499.
+- UI/UX design — product design, design systems, interactive prototypes. From $449.
+- E‑commerce — Shopify, WooCommerce and custom storefronts with payments and order flows.
+- SEO & digital marketing — technical + content SEO, local SEO, reporting. From $199/month.
+- Branding & graphic design — identity systems, logo, guidelines, creatives.
+- AI automation & AI chatbots — lead‑capturing assistants trained on your business. From $299.
+- Custom software — dashboards, client portals, SaaS MVPs. From $999.
+- Landing pages & performance optimization — conversion pages and Core Web Vitals rescue. From $129.
+
+## Pricing (starting points in USD; every project gets a free custom quote)
+- Starter website — $299 (landing site, ~5–7 days)
+- Business website — $699 (multi‑page + light 3D, ~2 weeks)
+- Premium 3D — from $1,499 (cinematic interactive experience, 3–6 weeks)
+- Full machine‑readable pricing: https://webro.studio/pricing.txt
+
+## Key pages
+- Home: https://webro.studio/
+- Services: https://webro.studio/#services
+- Work / portfolio: https://webro.studio/#work
+- Pricing: https://webro.studio/#pricing
+- FAQ: https://webro.studio/#faq
+- Contact: https://webro.studio/#contact
+
+## Contact
+- WhatsApp / phone: +91 63770 93356
+- Email: webro284@gmail.com
+- Website: https://webro.studio
+
+## Facts
+- Type: digital agency and 3D web design studio
+- Rating: 4.9/5 from 90+ clients; 120+ projects delivered across 12+ countries
+- Delivery: milestone‑based (50% to start, 50% on delivery); post‑launch support included
+- Reach: worldwide, fully online (design, development, SEO, branding, AI)
