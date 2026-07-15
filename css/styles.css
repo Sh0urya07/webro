@@ -1,0 +1,1172 @@
+/* ============================================================
+   styles.css - WEBRO consolidated stylesheet (all pages).
+   Merged in cascade order from the previous modular CSS files.
+   Order: tokens base loader nav hero motion showcase sections components contact widgets responsive mobile-fixes consistency variations water-flow bubbles refine fallback
+   ============================================================ */
+
+/* ===== tokens.css ===== */
+/* ============================================================
+   tokens.css — WEBRO design tokens (Lime & Beige, cinematic)
+   Single source of truth for colour, type, spacing, motion.
+   Edit here to re-theme the entire site.
+   ============================================================ */
+/* Metric-matched fallback fonts — prevent layout shift (CLS) while
+   the Google Fonts load. Same box metrics as the real fonts. */
+@font-face{font-family:"Space Grotesk Fallback";src:local("Arial");size-adjust:104%;ascent-override:94%;descent-override:28%;line-gap-override:0%}
+@font-face{font-family:"DM Sans Fallback";src:local("Arial");size-adjust:100%;ascent-override:97%;descent-override:30%;line-gap-override:0%}
+:root{
+  --beige:#F1EBDD;          /* warm page background */
+  --beige-2:#FBF7EE;        /* raised surface */
+  --cream:#FFFDF8;
+  --ink:#1C1B14;            /* near-black warm ink */
+  --ink-soft:#5b5848;       /* muted text */
+  --lime:#C2D98A;           /* soft sage-lime accent / glow */
+  --lime-2:#8AAB3C;         /* muted primary lime */
+  --lime-deep:#4F7016;      /* deep olive-lime for contrast */
+  --line:rgba(77,124,15,.16);
+  --glass:rgba(255,255,255,.55);
+  --glass-brd:rgba(77,124,15,.22);
+  --glow:0 0 0 1px rgba(132,204,22,.4), 0 22px 55px -22px rgba(101,163,13,.5);
+  --shadow:0 14px 40px -18px rgba(40,50,15,.35);
+
+  --maxw:1180px;
+  --r:18px;
+
+  /* motion */
+  --ease-out:cubic-bezier(.16,1,.3,1);
+  --ease-spring:cubic-bezier(.3,1.3,.5,1);
+}
+
+/* ===== base.css ===== */
+/* ============================================================
+   base.css — reset, typography, global elements, buttons, bg-fx
+   ============================================================ */
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+/* Lenis smooth-scroll: disable native smooth so JS owns it */
+html.lenis,html.lenis body{height:auto}
+.lenis.lenis-smooth{scroll-behavior:auto !important}
+.lenis.lenis-stopped{overflow:hidden}
+
+body{background:var(--beige);color:var(--ink);font-family:"DM Sans","DM Sans Fallback",system-ui,sans-serif;line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4,.display{font-family:"Space Grotesk","Space Grotesk Fallback",sans-serif;line-height:1.08;letter-spacing:-.02em}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+section{position:relative}
+::selection{background:var(--lime);color:var(--ink)}
+
+:focus-visible{outline:3px solid var(--lime-2);outline-offset:3px;border-radius:6px}
+
+.skip-link{position:fixed;top:-60px;left:12px;z-index:10000;background:var(--lime-deep);color:#fff;padding:10px 16px;border-radius:10px;font-family:"Space Grotesk";font-weight:600;transition:top .2s}
+.skip-link:focus{top:12px}
+
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px;position:relative;z-index:2}
+.block{padding:96px 0}
+
+/* Decorative background */
+.bg-fx{position:fixed;inset:0;z-index:0;pointer-events:none}
+.bg-fx .grid{position:absolute;inset:0;
+  background-image:linear-gradient(rgba(77,124,15,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(77,124,15,.07) 1px,transparent 1px);
+  background-size:54px 54px;
+  -webkit-mask-image:radial-gradient(ellipse 85% 65% at 50% 0%,#000 30%,transparent 80%);
+  mask-image:radial-gradient(ellipse 85% 65% at 50% 0%,#000 30%,transparent 80%)}
+.bg-fx .blob{position:absolute;border-radius:50%;filter:blur(100px);opacity:.5}
+.blob.a{width:520px;height:520px;background:#d4e0a8;top:-180px;left:-120px;opacity:.35}
+.blob.b{width:460px;height:460px;background:#e7dcc0;top:34%;right:-160px;opacity:.5}
+.blob.c{width:420px;height:420px;background:#c4d291;bottom:-120px;left:30%;opacity:.25}
+
+/* shared section headings */
+.eyebrow{display:inline-block;font-family:"Space Grotesk";font-weight:600;letter-spacing:.18em;text-transform:uppercase;font-size:12.5px;color:var(--lime-deep);margin-bottom:14px}
+.sec-head{text-align:center;max-width:680px;margin:0 auto 56px}
+.sec-head h2{font-size:clamp(30px,4.6vw,46px);font-weight:700}
+.sec-head p{color:var(--ink-soft);margin-top:16px;font-size:17px}
+
+.glass{background:var(--glass);border:1px solid var(--glass-brd);border-radius:var(--r);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);box-shadow:var(--shadow);transition:transform .25s,border-color .25s,box-shadow .3s}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:13px 22px;border-radius:12px;font-family:"Space Grotesk";font-weight:600;font-size:15px;cursor:pointer;border:1px solid transparent;transition:transform .18s,box-shadow .25s,background .25s;white-space:nowrap}
+.btn:active{transform:translateY(1px)}
+.btn-primary{background:linear-gradient(135deg,#6aa717,#4D7C0F);color:#fff;box-shadow:0 10px 26px -14px rgba(77,124,15,.6)}
+.btn-primary:hover{box-shadow:0 16px 38px -14px rgba(77,124,15,.75);transform:translateY(-2px)}
+.btn-ghost{background:var(--cream);border:1px solid var(--glass-brd);color:var(--ink)}
+.btn-ghost:hover{border-color:var(--lime-2);box-shadow:0 0 0 1px var(--lime-2)}
+.btn-sm{padding:10px 16px;font-size:14px;border-radius:10px}
+
+/* shared logo mark animation */
+.logo-mark{display:block}
+.lp{fill:none;stroke-linecap:round;stroke-linejoin:round}
+.lp-w{stroke:url(#limeGrad);stroke-width:7;stroke-dasharray:260;stroke-dashoffset:260;animation:draw 1.1s var(--ease-out) forwards}
+.lp-arrow{stroke:url(#limeGrad);stroke-width:7;stroke-dasharray:40;stroke-dashoffset:40;animation:draw .4s ease 1s forwards}
+.lp-chart{stroke:var(--lime-2);stroke-width:2.6;opacity:.85;stroke-dasharray:110;stroke-dashoffset:110;animation:draw .9s ease .5s forwards}
+.lnode{fill:var(--lime);transform:scale(0);transform-box:fill-box;transform-origin:center;animation:pop .4s var(--ease-spring) forwards}
+.lnode.n1{animation-delay:.7s}.lnode.n2{animation-delay:.85s}.lnode.n3{animation-delay:1s}.lnode.n4{animation-delay:1.15s}
+.globe circle,.globe ellipse,.globe line{stroke:var(--lime-deep)}
+.globe{opacity:0;animation:fadein .5s ease .6s forwards}
+.merid{transform-box:fill-box;transform-origin:center;animation:spin 3.4s ease-in-out infinite}
+@keyframes draw{to{stroke-dashoffset:0}}
+@keyframes pop{to{transform:scale(1)}}
+@keyframes fadein{to{opacity:1}}
+@keyframes spin{0%,100%{transform:scaleX(1)}50%{transform:scaleX(.18)}}
+
+/* scroll reveal */
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .7s var(--ease-out),transform .7s var(--ease-out)}
+.reveal.in{opacity:1;transform:none}
+
+/* ===== loader.css ===== */
+/* ============================================================
+   loader.css — premium intro / loading sequence
+   ============================================================ */
+#loader{position:fixed;inset:0;z-index:9999;background:var(--beige);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:6px;transition:opacity .7s ease,visibility .7s ease}
+/* When hidden, the full-screen loader must NOT capture touch/clicks
+   (otherwise the page looks scrollable but nothing responds). */
+#loader.hide{opacity:0;visibility:hidden;pointer-events:none}
+#loader .logo-mark{width:120px;height:120px;animation:floaty 4.5s ease-in-out infinite}
+@keyframes floaty{50%{transform:translateY(-5px)}}
+.load-word{font-family:"Space Grotesk";font-weight:700;font-size:42px;letter-spacing:.14em;color:var(--ink);margin-top:8px;opacity:0;animation:rise .6s ease 1.1s forwards}
+.load-word b{color:var(--lime-deep)}
+.load-tag{font-family:"Space Grotesk";font-weight:500;letter-spacing:.32em;font-size:12px;color:var(--ink-soft);text-transform:uppercase;opacity:0;animation:rise .6s ease 1.3s forwards}
+.load-bar{width:170px;height:3px;border-radius:3px;background:rgba(77,124,15,.16);overflow:hidden;margin-top:22px;opacity:0;animation:fadein .4s ease 1.4s forwards}
+.load-bar span{display:block;height:100%;width:0%;border-radius:3px;background:linear-gradient(90deg,var(--lime-2),var(--lime));transition:width .35s var(--ease-out)}
+.load-pct{font-family:"Space Grotesk";font-weight:600;font-size:12px;color:var(--ink-soft);margin-top:10px;letter-spacing:.1em;opacity:0;animation:fadein .4s ease 1.5s forwards}
+@keyframes rise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+
+/* ===== nav.css ===== */
+/* ============================================================
+   nav.css — top call bar, header, desktop menu, mobile menu
+   ============================================================ */
+header{position:fixed;top:0;left:0;right:0;z-index:200;transition:background .35s,border-color .35s,backdrop-filter .35s,box-shadow .35s}
+header.scrolled{background:rgba(251,247,238,.82);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line);box-shadow:0 6px 24px -18px rgba(40,50,15,.5)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:70px}
+/* No flex `gap` here: the wordmark is `WEB<b>RO</b>`, so a flex gap would
+   wedge space between "WEB" and "RO" and make it read "WEB RO". Space the
+   icon with margin instead so the brand always reads as one word: WEBRO. */
+.brand{display:flex;align-items:center;font-family:"Space Grotesk";font-weight:700;font-size:22px;letter-spacing:.02em}
+.brand .logo-mark{width:34px;height:34px;margin-right:10px}
+.brand b{color:var(--lime-deep)}
+.menu{display:flex;align-items:center;gap:28px}
+.menu a{color:var(--ink-soft);font-size:15px;font-weight:500;transition:color .2s;position:relative}
+.menu a:hover{color:var(--ink)}
+.menu a::after{content:"";position:absolute;left:0;bottom:-6px;height:2px;width:0;background:var(--lime-2);transition:width .25s}
+.menu a:hover::after{width:100%}
+.nav-actions{display:flex;align-items:center;gap:12px}
+.call-btn{display:inline-flex;align-items:center;gap:8px;color:var(--lime-deep);font-family:"Space Grotesk";font-weight:600;font-size:14.5px}
+.call-btn svg{width:16px;height:16px}
+.burger{display:none;background:none;border:0;color:var(--ink);cursor:pointer;padding:8px}
+.burger svg{width:26px;height:26px}
+
+.mobile-menu{display:none;position:fixed;inset:auto 0 auto 0;top:70px;z-index:199;background:rgba(251,247,238,.98);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line);padding:20px 22px 26px}
+.mobile-menu.open{display:block;animation:fadein-y .25s ease}
+.mobile-menu a{display:block;padding:13px 0;color:var(--ink-soft);font-family:"Space Grotesk";font-weight:500;border-bottom:1px solid var(--line)}
+.mobile-menu .btn{margin-top:16px;width:100%}
+@keyframes fadein-y{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
+
+/* ===== hero.css ===== */
+/* ============================================================
+   hero.css — hero section + 3D canvas veil + scroll cue
+   ============================================================ */
+.hero{padding:150px 0 80px;text-align:center;overflow:hidden;min-height:100vh;display:flex;align-items:center;contain:layout style paint}
+#hero-canvas{position:absolute;inset:0;width:100%;height:100%;z-index:1;display:block;will-change:transform;contain:layout style paint}
+.hero .wrap{z-index:3;position:relative}
+.hero-veil{position:absolute;inset:0;z-index:2;pointer-events:none;background:radial-gradient(ellipse 62% 58% at 50% 46%, var(--beige) 16%, rgba(241,235,221,.74) 44%, rgba(241,235,221,.28) 72%, transparent 90%)}
+
+.pill{display:inline-flex;align-items:center;gap:9px;padding:7px 15px;border-radius:999px;background:var(--cream);border:1px solid var(--glass-brd);font-size:13px;color:var(--lime-deep);margin-bottom:26px;font-weight:500;box-shadow:var(--shadow)}
+.pill i{width:7px;height:7px;border-radius:50%;background:var(--lime-2);box-shadow:0 0 10px var(--lime-2);animation:pulse 2.4s ease-in-out infinite}
+@keyframes pulse{50%{opacity:.4;transform:scale(.8)}}
+.hero h1{font-size:clamp(40px,7.2vw,86px);font-weight:700;max-width:14ch;margin:0 auto}
+.hero h1 em{font-style:normal;color:var(--lime-deep);position:relative}
+.hero p.sub{max-width:600px;margin:24px auto 0;color:var(--ink-soft);font-size:clamp(16px,2.2vw,19px)}
+.hero-cta{display:flex;gap:14px;justify-content:center;margin-top:38px;flex-wrap:wrap}
+.hero-strip{display:flex;gap:34px;justify-content:center;flex-wrap:wrap;margin-top:54px;color:var(--ink-soft);font-size:14px}
+.hero-strip b{color:var(--ink);font-family:"Space Grotesk";font-size:20px;display:inline-block}
+
+.scroll-cue{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);z-index:3;display:flex;flex-direction:column;align-items:center;gap:8px;font-family:"Space Grotesk";font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--ink-soft)}
+.scroll-cue span{width:24px;height:38px;border:2px solid var(--glass-brd);border-radius:14px;position:relative}
+.scroll-cue span::before{content:"";position:absolute;top:7px;left:50%;transform:translateX(-50%);width:4px;height:8px;border-radius:3px;background:var(--lime-2);animation:cue 1.6s ease-in-out infinite}
+@keyframes cue{50%{transform:translate(-50%,12px);opacity:.3}}
+
+/* ===== motion.css ===== */
+/* ============================================================
+   motion.css — WEBRO maximalist motion layer.
+
+   A single, self-hosted (CSP-safe) stylesheet that turns the
+   static site into a "motion site": animated text, animated
+   placeholders/skeletons, magnetic buttons, scroll parallax,
+   hover micro-interactions and a scroll-progress bar.
+
+   EVERYTHING here is gated behind `@media (prefers-reduced-motion:
+   no-preference)` or falls back gracefully, so users who ask their
+   OS for reduced motion get a calm, fully-visible site.
+
+   Also carries small bug-fixes discovered in QA (see bottom).
+   ============================================================ */
+
+/* ---- motion tokens ---------------------------------------- */
+:root{
+  --m-ease:cubic-bezier(.16,1,.3,1);
+  --m-spring:cubic-bezier(.34,1.56,.64,1);
+  --m-fast:.45s;
+  --m-med:.7s;
+  --m-slow:1.05s;
+}
+
+/* ============================================================
+   1) SCROLL PROGRESS BAR (top of viewport)
+   ============================================================ */
+.scroll-progress{
+  position:fixed;top:0;left:0;height:3px;width:0%;z-index:9999;
+  background:linear-gradient(90deg,var(--lime-2),var(--lime),var(--lime-deep));
+  box-shadow:0 0 12px rgba(132,204,22,.55);
+  transition:width .1s linear;pointer-events:none;
+}
+
+/* ============================================================
+   2) ANIMATED TEXT
+   JS (`motion.js`) splits target text into .m-word / .m-char
+   spans. CSS animates each with a stagger driven by --i.
+   ============================================================ */
+.m-split{--i:0}
+.m-line{display:block;overflow:hidden}           /* mask wrapper for line reveals */
+.m-word,.m-char{display:inline-block;will-change:transform,opacity}
+.m-word{white-space:pre}                          /* keep spaces between words */
+
+@media (prefers-reduced-motion: no-preference){
+  /* Word / char rise-in — starts hidden, revealed when parent gets .m-in */
+  .m-anim .m-word,
+  .m-anim .m-char{
+    opacity:0;transform:translateY(1.05em) rotate(2deg);
+  }
+  .m-anim.m-in .m-word,
+  .m-anim.m-in .m-char{
+    opacity:1;transform:none;
+    transition:opacity .6s var(--m-ease),transform .75s var(--m-ease);
+    transition-delay:calc(var(--i) * 42ms);
+  }
+  /* Character variant is a touch snappier + staggers tighter */
+  .m-anim.m-chars.m-in .m-char{transition-delay:calc(var(--i) * 24ms)}
+
+  /* Blur-in flavour for big headings */
+  .m-blur .m-word{filter:blur(8px)}
+  .m-blur.m-in .m-word{filter:blur(0);transition:opacity .6s var(--m-ease),transform .75s var(--m-ease),filter .7s var(--m-ease);transition-delay:calc(var(--i) * 46ms)}
+}
+
+/* Gradient shimmer for emphasised words (<em>) */
+@media (prefers-reduced-motion: no-preference){
+  .hero h1 em,.sc-step h2 em,.m-shimmer{
+    background:linear-gradient(100deg,var(--lime-deep) 0%,var(--lime-2) 30%,#d7ef95 50%,var(--lime-2) 70%,var(--lime-deep) 100%);
+    background-size:220% auto;
+    -webkit-background-clip:text;background-clip:text;
+    -webkit-text-fill-color:transparent;color:transparent;
+    animation:m-shine 6s linear infinite;
+  }
+}
+@keyframes m-shine{to{background-position:220% center}}
+
+/* ============================================================
+   3) REVEAL VARIANTS (richer than the base .reveal)
+   Add these classes to any element; motion.js observes them.
+   ============================================================ */
+[data-reveal]{opacity:0;will-change:transform,opacity}
+@media (prefers-reduced-motion: no-preference){
+  [data-reveal="up"]      {transform:translateY(40px)}
+  [data-reveal="down"]    {transform:translateY(-40px)}
+  [data-reveal="left"]    {transform:translateX(48px)}
+  [data-reveal="right"]   {transform:translateX(-48px)}
+  [data-reveal="scale"]   {transform:scale(.9)}
+  [data-reveal="rot"]     {transform:rotate(-4deg) scale(.94)}
+  [data-reveal].m-in{
+    opacity:1;transform:none;
+    transition:opacity var(--m-med) var(--m-ease),transform var(--m-med) var(--m-ease);
+    transition-delay:var(--m-delay,0s);
+  }
+}
+@media (prefers-reduced-motion: reduce){
+  [data-reveal]{opacity:1 !important;transform:none !important}
+}
+
+/* Stagger children (grids/lists) */
+@media (prefers-reduced-motion: no-preference){
+  [data-stagger] > *{opacity:0;transform:translateY(28px)}
+  [data-stagger].m-in > *{
+    opacity:1;transform:none;
+    transition:opacity .6s var(--m-ease),transform .7s var(--m-ease);
+  }
+}
+@media (prefers-reduced-motion: reduce){
+  [data-stagger] > *{opacity:1 !important;transform:none !important}
+}
+
+/* ============================================================
+   4) ANIMATED PLACEHOLDERS / SKELETONS
+   Use `.skeleton` for a shimmering loading block; the wrapper
+   `.ph-slot` marks a spot where real assets will be dropped in.
+   ============================================================ */
+.skeleton{
+  position:relative;overflow:hidden;border-radius:14px;
+  background:linear-gradient(180deg,rgba(255,253,248,.9),rgba(241,235,221,.7));
+  border:1px solid var(--line);
+}
+.skeleton::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(100deg,transparent 20%,rgba(255,255,255,.65) 50%,transparent 80%);
+  transform:translateX(-100%);
+}
+@media (prefers-reduced-motion: no-preference){
+  .skeleton::after{animation:m-shimmer 1.6s var(--m-ease) infinite}
+}
+@keyframes m-shimmer{to{transform:translateX(100%)}}
+
+/* "Asset coming soon" slot — a branded, animated placeholder that
+   makes empty image areas look intentional, not broken. */
+.ph-slot{
+  position:relative;display:grid;place-items:center;min-height:180px;
+  border-radius:16px;overflow:hidden;color:var(--lime-deep);
+  background:
+    radial-gradient(120% 120% at 0% 0%,rgba(194,217,138,.5),transparent 55%),
+    radial-gradient(120% 120% at 100% 100%,rgba(138,171,60,.35),transparent 55%),
+    var(--beige-2);
+  border:1px dashed var(--glass-brd);
+}
+.ph-slot::before{
+  content:"";position:absolute;inset:0;background-size:22px 22px;
+  background-image:linear-gradient(rgba(77,124,15,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(77,124,15,.08) 1px,transparent 1px);
+  -webkit-mask-image:radial-gradient(80% 80% at 50% 50%,#000,transparent);mask-image:radial-gradient(80% 80% at 50% 50%,#000,transparent);
+}
+.ph-slot .ph-label{position:relative;z-index:1;font-family:"Space Grotesk";font-weight:600;font-size:13px;letter-spacing:.04em;display:inline-flex;align-items:center;gap:8px;opacity:.8}
+.ph-slot .ph-dot{width:8px;height:8px;border-radius:50%;background:var(--lime-2)}
+@media (prefers-reduced-motion: no-preference){
+  .ph-slot .ph-dot{animation:m-pulse 1.4s ease-in-out infinite}
+}
+@keyframes m-pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.6);opacity:.4}}
+
+/* ============================================================
+   5) ANIMATED FORM FIELDS (placeholders that move)
+   Floating labels, animated focus underline, caret glow.
+   Progressive-enhancement: motion.js adds `.mfield` wrappers.
+   ============================================================ */
+.cform .field{position:relative}
+.cform label{transition:color .25s var(--m-ease),transform .25s var(--m-ease)}
+.cform input,.cform textarea,.cform select{
+  transition:border-color .25s var(--m-ease),box-shadow .3s var(--m-ease),background .25s;
+}
+.cform input:focus,.cform textarea:focus,.cform select:focus{
+  border-color:var(--lime-2);box-shadow:0 0 0 4px rgba(132,204,22,.18);outline:none;
+}
+.cform .field:focus-within label{color:var(--lime-deep)}
+/* animated underline that sweeps in on focus */
+.cform .field::after{
+  content:"";position:absolute;left:14px;right:14px;bottom:9px;height:2px;
+  background:linear-gradient(90deg,var(--lime-2),var(--lime-deep));
+  transform:scaleX(0);transform-origin:left;border-radius:2px;
+  transition:transform .35s var(--m-ease);pointer-events:none;
+}
+.cform .field:focus-within::after{transform:scaleX(1)}
+/* animated placeholder text (subtle drift + fade while empty) */
+@media (prefers-reduced-motion: no-preference){
+  .cform input::placeholder,.cform textarea::placeholder{
+    transition:opacity .3s,transform .3s;
+  }
+  .cform input:focus::placeholder,.cform textarea:focus::placeholder{
+    opacity:.5;transform:translateX(4px);
+  }
+}
+
+/* ============================================================
+   6) MAGNETIC BUTTONS + HOVER MICRO-INTERACTIONS
+   ============================================================ */
+.magnetic{will-change:transform}
+.btn-primary{position:relative;overflow:hidden}
+/* sheen sweep on primary buttons */
+.btn-primary::after{
+  content:"";position:absolute;top:0;left:-120%;width:60%;height:100%;
+  background:linear-gradient(100deg,transparent,rgba(255,255,255,.35),transparent);
+  transform:skewX(-18deg);transition:none;pointer-events:none;
+}
+@media (prefers-reduced-motion: no-preference){
+  .btn-primary:hover::after{animation:m-sheen .9s var(--m-ease)}
+}
+@keyframes m-sheen{to{left:130%}}
+
+/* card lift + glow (services/pricing/portfolio/about cards) */
+@media (prefers-reduced-motion: no-preference){
+  .svc-card,.price-card,.pf-card,.vv .card,.why-visual,.tcard,.faq-item{
+    transition:transform .3s var(--m-ease),box-shadow .35s var(--m-ease),border-color .3s;
+  }
+  .svc-card:hover,.price-card:hover,.pf-card:hover,.vv .card:hover{
+    transform:translateY(-6px);
+    box-shadow:0 26px 60px -26px rgba(77,124,15,.5);
+  }
+}
+
+/* animated link underline sweep (nav + footer links) */
+.menu a,.foot a,.cinfo a{position:relative}
+.menu a::after,.foot ul a::after{
+  content:"";position:absolute;left:0;right:0;bottom:-3px;height:2px;
+  background:linear-gradient(90deg,var(--lime-2),var(--lime-deep));
+  transform:scaleX(0);transform-origin:right;transition:transform .3s var(--m-ease);border-radius:2px;
+}
+.menu a:hover::after,.foot ul a:hover::after{transform:scaleX(1);transform-origin:left}
+
+/* floating action buttons — gentle attention pulse ring */
+@media (prefers-reduced-motion: no-preference){
+  .fab.wa::before{
+    content:"";position:absolute;inset:0;border-radius:50%;
+    box-shadow:0 0 0 0 rgba(37,211,102,.5);animation:m-ring 2.6s ease-out infinite;
+  }
+  .fab{position:relative}
+}
+@keyframes m-ring{0%{box-shadow:0 0 0 0 rgba(37,211,102,.5)}70%{box-shadow:0 0 0 16px rgba(37,211,102,0)}100%{box-shadow:0 0 0 0 rgba(37,211,102,0)}}
+
+/* ============================================================
+   7) PARALLAX + FLOAT UTILITIES (driven by motion.js/ScrollTrigger)
+   ============================================================ */
+[data-parallax]{will-change:transform}
+@media (prefers-reduced-motion: no-preference){
+  .m-float{animation:m-float 6s ease-in-out infinite}
+  .m-float.d1{animation-delay:-1.5s}
+  .m-float.d2{animation-delay:-3s}
+  .m-float.d3{animation-delay:-4.5s}
+}
+@keyframes m-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+
+/* hero spotlight that follows the pointer (desktop, enhancement) */
+.hero .m-spotlight{
+  position:absolute;inset:0;z-index:1;pointer-events:none;opacity:0;
+  background:radial-gradient(320px 320px at var(--mx,50%) var(--my,40%),rgba(194,217,138,.20),transparent 70%);
+  transition:opacity .5s ease;mix-blend-mode:screen;
+}
+@media (hover:hover) and (pointer:fine) and (prefers-reduced-motion: no-preference){
+  .hero:hover .m-spotlight{opacity:1}
+}
+
+/* ============================================================
+   8) PAGE / LOADER HAND-OFF
+   When the loader lifts, body gets `.m-ready` — used to kick off
+   the hero entrance so text never flashes empty.
+   ============================================================ */
+@media (prefers-reduced-motion: no-preference){
+  body:not(.m-ready) .hero .hero-cta,
+  body:not(.m-ready) .hero .hero-strip,
+  body:not(.m-ready) .hero .pill,
+  body:not(.m-ready) .hero .scroll-cue{opacity:0}
+  body.m-ready .hero .pill{animation:m-riseIn .7s var(--m-ease) .05s both}
+  body.m-ready .hero .hero-cta{animation:m-riseIn .7s var(--m-ease) .35s both}
+  body.m-ready .hero .hero-strip{animation:m-riseIn .7s var(--m-ease) .5s both}
+  body.m-ready .hero .scroll-cue{animation:m-riseIn .7s var(--m-ease) .7s both}
+}
+@keyframes m-riseIn{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+
+/* ============================================================
+   9) BUG FIXES (found during QA)
+   ============================================================ */
+/* (a) Floating widgets overlapped the footer copyright on phones.
+       Give the footer clearance so nothing sits under the fabs. */
+@media (max-width:760px){
+  footer{padding-bottom:104px}
+  .foot-bottom{text-align:center}
+}
+/* (b) On very small screens the two right-side fabs + chat pill could
+       crowd the corners; nudge sizing so they never overlap content. */
+@media (max-width:420px){
+  .floats{bottom:16px;right:12px}
+  .chat-fab{bottom:16px;left:12px;padding:10px 14px 10px 12px;font-size:13px}
+  .chat-fab span{display:inline}
+}
+/* (c) Keep animated transforms from causing horizontal scroll — WITHOUT
+       overriding html/body overflow (overflow-x:clip there can trap
+       touch-scrolling on older iOS Safari). base/mobile-fixes already
+       set overflow-x:hidden, which is enough. */
+.m-word,.m-char,[data-parallax]{backface-visibility:hidden}
+/* (d) Canvases must never intercept touch — content scroll always wins. */
+.hero > canvas{pointer-events:none}
+
+/* ============================================================
+   10) SPLINE ACCENT STAGE (optional live-3D section)
+   Shows an animated placeholder until a scene URL is configured.
+   ============================================================ */
+.spline-stage{position:relative;min-height:440px;overflow:hidden;border-radius:20px;display:grid}
+.spline-stage .ph-slot{min-height:440px;width:100%;border-radius:20px}
+.spline-stage spline-viewer{display:block;width:100%;height:440px}
+@media (max-width:620px){
+  .spline-stage,.spline-stage .ph-slot,.spline-stage spline-viewer{min-height:340px;height:340px}
+}
+
+/* ---- Crystal accent in the quote / contact column ---- */
+.contact-crystal{width:min(300px,72%);margin:32px 0 0}
+@media (max-width:980px){.contact-crystal{margin:26px auto 0}}
+
+/* ===== showcase.css ===== */
+/* ============================================================
+   showcase.css — scroll-driven 3D showcase section
+   Sticky canvas behind a rail of scrolling copy steps.
+   ============================================================ */
+.showcase{position:relative;background:linear-gradient(180deg,var(--beige),var(--beige-2) 50%,var(--beige));contain:layout style}
+#showcase-canvas{position:sticky;top:0;width:100%;height:100vh;display:block;z-index:1;will-change:transform;contain:layout style paint}
+.showcase-rail{position:relative;z-index:2;margin-top:-100vh;pointer-events:none;contain:layout style}
+.sc-step{min-height:100vh;display:flex;flex-direction:column;justify-content:center;max-width:520px;margin:0 22px;padding:0 0 0 4px}
+.sc-step:nth-child(even){margin-left:auto;margin-right:22px;text-align:right;align-items:flex-end}
+.sc-step h2{font-size:clamp(30px,4.6vw,52px);font-weight:700;margin:6px 0 16px}
+.sc-step h2 em{font-style:normal;color:var(--lime-deep)}
+.sc-step p{color:var(--ink-soft);font-size:17px;line-height:1.7;background:rgba(251,247,238,.55);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);padding:14px 18px;border-radius:14px;border:1px solid var(--line)}
+.sc-hint{position:sticky;bottom:24px;z-index:3;text-align:center;font-family:"Space Grotesk";font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft);pointer-events:none;margin-top:-60px}
+
+@media(max-width:760px){
+  #showcase-canvas{height:70vh;top:15vh}
+  .sc-step{min-height:82vh;max-width:none;text-align:left !important;align-items:flex-start !important;margin:0 18px}
+}
+
+/* ===== sections.css ===== */
+/* ============================================================
+   sections.css — marquee, services, stats, why, portfolio, tilt
+   ============================================================ */
+
+/* Marquee */
+.marquee-sec{padding:18px 0 6px}
+.marquee-sec .eyebrow{color:#3F5711}
+.marquee{overflow:hidden;position:relative;padding:14px 0;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.marquee-track{display:flex;gap:14px;width:max-content;animation:scrollx 48s linear infinite}
+.marquee:hover .marquee-track{animation-play-state:paused}
+@keyframes scrollx{to{transform:translateX(-50%)}}
+.flag{display:inline-flex;align-items:center;gap:9px;padding:9px 16px;border-radius:999px;background:var(--cream);border:1px solid var(--glass-brd);font-size:14px;font-family:"Space Grotesk";font-weight:500;white-space:nowrap}
+.flag img{width:22px;height:auto;border-radius:3px}
+.tech-chip{display:inline-flex;align-items:center;gap:10px;padding:11px 18px;border-radius:14px;background:var(--cream);border:1px solid var(--glass-brd);font-family:"Space Grotesk";font-weight:500;font-size:14.5px;white-space:nowrap}
+.tech-chip img{width:26px;height:26px}
+
+/* tilt */
+.tilt{transform-style:preserve-3d;transition:transform .15s ease,box-shadow .3s,border-color .25s;will-change:transform}
+.tilt:hover{border-color:var(--lime-2);box-shadow:var(--glow)}
+.tilt > *{transform:translateZ(26px)}
+
+/* Services */
+.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.svc{padding:30px 26px;position:relative;overflow:hidden;background:var(--cream)}
+.svc .ico{width:54px;height:54px;border-radius:14px;display:grid;place-items:center;margin-bottom:20px;background:linear-gradient(135deg,rgba(132,204,22,.22),rgba(163,230,53,.14));border:1px solid var(--glass-brd);color:var(--lime-deep)}
+.svc .ico svg{width:26px;height:26px}
+.svc h3{font-size:21px;font-weight:600;margin-bottom:10px}
+.svc p{color:var(--ink-soft);font-size:15px}
+.svc .feat{list-style:none;margin-top:18px;display:flex;flex-direction:column;gap:9px}
+.svc .feat li{display:flex;gap:10px;align-items:flex-start;color:#3f3d33;font-size:14px}
+.svc .feat svg{width:16px;height:16px;color:var(--lime-deep);flex:0 0 auto;margin-top:4px}
+.svc-link{display:inline-flex;align-items:center;gap:7px;margin-top:22px;color:var(--lime-deep);font-weight:600;font-size:14.5px;font-family:"Space Grotesk"}
+.svc-link svg{width:16px;height:16px;transition:transform .2s}
+.svc:hover .svc-link svg{transform:translateX(4px)}
+
+/* Stats */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.stat{padding:30px 22px;text-align:center;background:var(--cream)}
+.stat .num{font-family:"Space Grotesk";font-weight:700;font-size:clamp(34px,5vw,50px);color:var(--lime-deep)}
+.stat .lbl{color:var(--ink-soft);font-size:14px;margin-top:6px}
+
+/* Why */
+.why{display:grid;grid-template-columns:1.05fr 1fr;gap:50px;align-items:center}
+.why-list{display:flex;flex-direction:column;gap:18px;margin-top:30px}
+.why-item{display:flex;gap:16px;align-items:flex-start}
+.why-item .wi{width:42px;height:42px;border-radius:11px;flex:0 0 auto;display:grid;place-items:center;background:linear-gradient(135deg,rgba(132,204,22,.25),rgba(163,230,53,.12));border:1px solid var(--glass-brd);color:var(--lime-deep)}
+.why-item .wi svg{width:20px;height:20px}
+.why-item h3{font-size:17px;font-weight:600;margin-bottom:3px}
+.why-item p{color:var(--ink-soft);font-size:14.5px}
+.why-visual{padding:34px;border-radius:24px;position:relative;overflow:hidden;background:var(--cream)}
+.vchip{display:flex;align-items:center;gap:12px;padding:14px 16px;border-radius:13px;background:var(--beige-2);border:1px solid var(--line);margin-bottom:13px}
+.vchip:last-child{margin-bottom:0}
+.vchip .d{width:10px;height:10px;border-radius:50%;background:var(--lime-2);box-shadow:0 0 12px var(--lime-2)}
+.vchip b{font-family:"Space Grotesk";font-size:15px}
+.vchip span{color:var(--ink-soft);font-size:13.5px;margin-left:auto}
+
+/* Portfolio — premium showcase */
+.filters{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:38px}
+.filters button{padding:9px 18px;border-radius:999px;background:var(--cream);border:1px solid var(--glass-brd);color:var(--ink-soft);font-family:"Space Grotesk";font-weight:500;font-size:14px;cursor:pointer;transition:.2s}
+.filters button:hover{color:var(--ink)}
+.filters button.active{background:linear-gradient(135deg,var(--lime-2),var(--lime));color:var(--ink);border-color:transparent}
+.portfolio{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.proj{display:flex;flex-direction:column;border-radius:22px;overflow:hidden;border:1px solid var(--glass-brd);background:var(--cream);box-shadow:var(--shadow);transition:transform .35s var(--ease-out),box-shadow .35s,border-color .25s}
+.proj:hover{transform:translateY(-6px);box-shadow:var(--glow);border-color:var(--lime-2)}
+.proj-featured{grid-column:span 2}
+.pthumb{position:relative;aspect-ratio:16/10;overflow:hidden}
+.proj-featured .pthumb{aspect-ratio:16/9}
+.pthumb-img{width:100%;height:100%;object-fit:cover;transition:transform .5s var(--ease-out)}
+.proj:hover .pthumb-img{transform:scale(1.05)}
+.pthumb-fallback{width:100%;height:100%;display:grid;place-items:center;font-family:"Space Grotesk";font-weight:700;font-size:clamp(22px,3vw,30px);color:#fbfdf6;letter-spacing:.03em;text-shadow:0 2px 12px rgba(40,50,15,.4)}
+.pthumb-veil{position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(28,27,20,.2));pointer-events:none}
+.ptag{position:absolute;top:12px;left:12px;padding:6px 12px;border-radius:999px;background:rgba(255,253,248,.92);color:var(--lime-deep);font-size:11px;font-weight:600;font-family:"Space Grotesk";letter-spacing:.08em;text-transform:uppercase;-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}
+.pbody{display:flex;flex-direction:column;gap:8px;flex:1;padding:20px 22px}
+.proj h3{font-family:"Space Grotesk";font-size:19px;font-weight:600;text-wrap:balance}
+.presult{color:var(--ink-soft);font-size:14px;line-height:1.5;text-wrap:pretty;max-width:60ch}
+.ptechs{display:flex;flex-wrap:wrap;gap:6px;margin-top:2px}
+.ptech{font-size:11.5px;color:#3f3d33;background:var(--beige-2);border:1px solid var(--line);padding:4px 10px;border-radius:999px;font-family:"Space Grotesk";font-weight:500}
+.plive{display:inline-flex;align-items:center;gap:7px;margin-top:auto;padding-top:10px;color:var(--lime-deep);font-weight:600;font-size:14px;font-family:"Space Grotesk"}
+.plive svg{width:15px;height:15px;transition:transform .2s}
+.proj:hover .plive svg{transform:translate(2px,-2px)}
+@media(max-width:620px){.proj-featured{grid-column:auto}}
+/* random "drop / pop into place" entrance — js sets --dx/--dy/--drot/--dscale/--ddelay */
+.proj.drop{opacity:0;transform:translate(var(--dx,0),var(--dy,0)) rotate(var(--drot,0deg)) scale(var(--dscale,.82));transition:opacity .45s var(--ease-out),transform .72s var(--ease-spring);transition-delay:var(--ddelay,0ms);will-change:transform,opacity}
+.proj.drop.landed{opacity:1;transform:translate(0,0) rotate(0deg) scale(1)}
+@media(prefers-reduced-motion:reduce){.proj.drop{opacity:1!important;transform:none!important;transition:none!important}}
+
+/* ===== components.css ===== */
+/* ============================================================
+   components.css — pricing, testimonials, faq, about
+   ============================================================ */
+
+/* Pricing */
+.pricing{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:stretch}
+.plan{padding:34px 28px;display:flex;flex-direction:column;background:var(--cream)}
+.plan.feat-plan{border-color:var(--lime-2);box-shadow:var(--glow);position:relative}
+.plan .ribbon{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,var(--lime-2),var(--lime));color:var(--ink);font-size:12px;font-weight:600;font-family:"Space Grotesk";padding:5px 14px;border-radius:999px;letter-spacing:.04em;white-space:nowrap}
+.plan h3{font-size:20px;font-weight:600}
+.plan .price{font-family:"Space Grotesk";font-weight:700;font-size:42px;margin:14px 0 4px}
+.plan .price small{font-size:15px;color:var(--ink-soft);font-weight:500}
+.plan .desc{color:var(--ink-soft);font-size:14px;min-height:42px}
+.plan ul{list-style:none;margin:22px 0 26px;display:flex;flex-direction:column;gap:12px}
+.plan li{display:flex;gap:11px;align-items:flex-start;font-size:14.5px;color:#3f3d33}
+.plan li svg{width:17px;height:17px;color:var(--lime-deep);flex:0 0 auto;margin-top:3px}
+.plan .btn{margin-top:auto;width:100%}
+
+/* Testimonials */
+.tslider{max-width:760px;margin:0 auto;position:relative;background:var(--cream)}
+.tcard{padding:40px 38px;text-align:center;display:none}
+.tcard.on{display:block;animation:tfade .5s ease}
+@keyframes tfade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.tcard .stars{color:var(--lime-2);letter-spacing:3px;margin-bottom:18px}
+.tcard q{font-family:"Space Grotesk";font-size:clamp(18px,2.6vw,23px);font-weight:500;line-height:1.5}
+.tcard .who{margin-top:24px;display:flex;align-items:center;justify-content:center;gap:13px}
+.tcard .av{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;font-family:"Space Grotesk";font-weight:700;background:linear-gradient(135deg,var(--lime-2),var(--lime));color:var(--ink)}
+.tcard .who b{font-family:"Space Grotesk";font-size:15px;display:block}
+.tcard .who span{color:var(--ink-soft);font-size:13.5px}
+.tdots{display:flex;gap:9px;justify-content:center;margin-top:28px;padding-bottom:28px}
+.tdots button{width:9px;height:9px;border-radius:50%;border:0;background:rgba(77,124,15,.22);cursor:pointer;transition:.2s;padding:0}
+.tdots button.on{background:var(--lime-2);width:26px;border-radius:6px}
+
+/* FAQ */
+.faq{max-width:760px;margin:0 auto;display:flex;flex-direction:column;gap:12px}
+.qa{border:1px solid var(--glass-brd);border-radius:14px;background:var(--cream);overflow:hidden}
+.qa button{width:100%;text-align:left;background:none;border:0;color:var(--ink);cursor:pointer;padding:20px 22px;display:flex;align-items:center;justify-content:space-between;gap:16px;font-family:"Space Grotesk";font-weight:500;font-size:16.5px}
+.qa .plus{width:22px;height:22px;flex:0 0 auto;position:relative;transition:transform .3s}
+.qa .plus::before,.qa .plus::after{content:"";position:absolute;background:var(--lime-deep);border-radius:2px}
+.qa .plus::before{top:50%;left:0;right:0;height:2px;transform:translateY(-50%)}
+.qa .plus::after{left:50%;top:0;bottom:0;width:2px;transform:translateX(-50%);transition:opacity .3s}
+.qa.open .plus{transform:rotate(180deg)}
+.qa.open .plus::after{opacity:0}
+.qa .ans{max-height:0;overflow:hidden;transition:max-height .35s ease}
+.qa .ans p{padding:0 22px 22px;color:var(--ink-soft);font-size:15px}
+
+/* About */
+.about{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:start}
+.about .lead{font-size:18px;color:#3f3d33;margin-bottom:18px}
+.about p{color:var(--ink-soft);margin-bottom:14px}
+.vv{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:8px}
+.vv .card{padding:24px;background:var(--cream)}
+.vv .card h3{font-size:17px;margin-bottom:8px;color:var(--lime-deep)}
+.vv .card p{font-size:14px;color:var(--ink-soft);margin:0}
+.founder{padding:26px;display:flex;gap:18px;align-items:center;margin-top:20px;background:var(--cream)}
+.founder .av{width:62px;height:62px;border-radius:16px;display:grid;place-items:center;font-family:"Space Grotesk";font-weight:700;font-size:24px;background:linear-gradient(135deg,var(--lime-2),var(--lime));color:var(--ink);flex:0 0 auto}
+.founder b{font-family:"Space Grotesk";font-size:18px}
+.founder span{color:var(--ink-soft);font-size:14px}
+
+/* ===== contact.css ===== */
+/* ============================================================
+   contact.css — CTA banner, contact form, footer
+   ============================================================ */
+
+/* CTA */
+.cta-banner{padding:60px 50px;border-radius:28px;text-align:center;position:relative;overflow:hidden;background:linear-gradient(135deg,#5f8f1a,#3f6212);border:1px solid #365314}
+.cta-banner h2{font-size:clamp(28px,4.4vw,44px);font-weight:700;max-width:18ch;margin:0 auto;color:#fff}
+.cta-banner p{color:#e6efd0;margin:16px auto 30px;max-width:46ch;font-size:17px}
+.cta-banner .btn-ghost{background:rgba(255,255,255,.92);border-color:transparent}
+.cta-orbit{position:absolute;width:340px;height:340px;border-radius:50%;border:1px solid rgba(255,255,255,.22);top:-130px;right:-90px;animation:rot 34s linear infinite}
+.cta-orbit::before{content:"";position:absolute;width:12px;height:12px;border-radius:50%;background:rgba(255,255,255,.8);top:-6px;left:50%;transform:translateX(-50%)}
+@keyframes rot{to{transform:rotate(360deg)}}
+
+/* Contact */
+.contact{display:grid;grid-template-columns:1fr 1.1fr;gap:46px;align-items:start}
+.cinfo .row{display:flex;gap:15px;align-items:flex-start;padding:18px 0;border-bottom:1px solid var(--line)}
+.cinfo .ic{width:44px;height:44px;border-radius:12px;flex:0 0 auto;display:grid;place-items:center;background:linear-gradient(135deg,rgba(132,204,22,.22),rgba(163,230,53,.12));border:1px solid var(--glass-brd);color:var(--lime-deep)}
+.cinfo .ic svg{width:20px;height:20px}
+.cinfo .row b{font-family:"Space Grotesk";font-size:15px;display:block}
+.cinfo .row span{color:var(--ink-soft);font-size:14.5px}
+.cinfo .row a{color:var(--lime-deep)}
+.map{margin-top:22px;height:170px;border-radius:16px;border:1px solid var(--glass-brd);display:grid;place-items:center;background:linear-gradient(135deg,rgba(132,204,22,.12),rgba(251,247,238,.6));color:var(--ink-soft);font-size:14px;text-align:center;position:relative;overflow:hidden}
+.map .grid2{position:absolute;inset:0;background-image:linear-gradient(rgba(77,124,15,.12) 1px,transparent 1px),linear-gradient(90deg,rgba(77,124,15,.12) 1px,transparent 1px);background-size:30px 30px;opacity:.6}
+.map svg{width:30px;height:30px;color:var(--lime-deep);margin-bottom:8px}
+.cform{padding:30px;background:var(--cream)}
+.field{margin-bottom:16px}
+.field label{display:block;font-size:13.5px;color:#3f3d33;margin-bottom:7px;font-family:"Space Grotesk";font-weight:500}
+.field input,.field select,.field textarea{width:100%;padding:13px 15px;border-radius:11px;background:var(--beige-2);border:1px solid var(--glass-brd);color:var(--ink);font-family:"DM Sans";font-size:15px;transition:border-color .2s,box-shadow .2s}
+.field textarea{resize:vertical;min-height:110px}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--lime-2);box-shadow:0 0 0 3px rgba(132,204,22,.22)}
+.field select{appearance:none;cursor:pointer}
+.field .err{color:#b91c1c;font-size:12.5px;margin-top:6px;display:none}
+.field.invalid input,.field.invalid select,.field.invalid textarea{border-color:#b91c1c}
+.field.invalid .err{display:block}
+.grid2c{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.form-ok{display:none;padding:18px;border-radius:12px;background:rgba(132,204,22,.14);border:1px solid var(--lime-2);color:var(--lime-deep);font-size:14.5px;margin-top:14px;text-align:center}
+.form-ok.show{display:block;animation:okpop .5s var(--ease-spring)}
+.form-send{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:14px}
+.form-send .btn{flex:1 1 auto;min-width:150px}
+@keyframes okpop{0%{opacity:0;transform:scale(.9)}100%{opacity:1;transform:scale(1)}}
+.check-anim{width:54px;height:54px;margin:0 auto 10px;border-radius:50%;background:var(--lime-2);display:grid;place-items:center}
+.check-anim svg{width:30px;height:30px;stroke:#fff;fill:none;stroke-width:3.5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:40;stroke-dashoffset:40}
+.form-ok.show .check-anim svg{animation:draw .5s ease .2s forwards}
+
+/* Footer */
+footer{border-top:1px solid var(--line);padding:60px 0 30px;margin-top:40px;background:var(--beige-2)}
+.foot{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:34px}
+.foot .brand{margin-bottom:14px}
+.foot .brand .logo-mark{width:30px;height:30px}
+.foot p{color:var(--ink-soft);font-size:14.5px;max-width:30ch}
+.foot h3{font-family:"Space Grotesk";font-size:14px;letter-spacing:.1em;text-transform:uppercase;color:#3f3d33;margin-bottom:16px}
+.foot ul{list-style:none;display:flex;flex-direction:column;gap:11px}
+.foot ul a,.foot ul span{color:var(--ink-soft);font-size:14.5px;transition:color .2s}
+.foot ul a:hover{color:var(--lime-deep)}
+.foot-bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;margin-top:44px;padding-top:24px;border-top:1px solid var(--line);color:var(--ink-soft);font-size:13.5px}
+.socials{display:flex;gap:10px}
+.socials a{width:38px;height:38px;border-radius:10px;display:grid;place-items:center;background:var(--cream);border:1px solid var(--glass-brd);color:var(--ink-soft);transition:.2s}
+.socials a:hover{color:var(--lime-deep);border-color:var(--lime-2);transform:translateY(-2px)}
+.socials svg{width:18px;height:18px}
+
+/* ===== widgets.css ===== */
+/* ============================================================
+   widgets.css — floating call/WhatsApp + AI chatbot
+   ============================================================ */
+.floats{position:fixed;right:22px;bottom:22px;z-index:300;display:flex;flex-direction:column;gap:12px}
+.fab{width:56px;height:56px;border-radius:50%;display:grid;place-items:center;cursor:pointer;transition:transform .2s}
+.fab:hover{transform:scale(1.08)}
+.fab svg{width:28px;height:28px;color:#fff}
+.fab.wa{background:#25D366;box-shadow:0 12px 30px -8px rgba(37,211,102,.6);animation:bob 4s ease-in-out infinite}
+.fab.call{background:linear-gradient(135deg,var(--lime-2),var(--lime-deep))}
+@keyframes bob{50%{transform:translateY(-4px)}}
+
+.chat-fab{position:fixed;left:22px;bottom:22px;z-index:300;display:inline-flex;align-items:center;gap:10px;padding:12px 18px 12px 14px;border-radius:999px;cursor:pointer;border:1px solid var(--lime-deep);background:linear-gradient(135deg,var(--lime-2),var(--lime));color:var(--ink);font-family:"Space Grotesk";font-weight:600;font-size:14px;box-shadow:0 12px 30px -12px rgba(101,163,13,.7);transition:transform .2s}
+.chat-fab:hover{transform:translateY(-2px)}
+.chat-fab svg{width:20px;height:20px}
+.chat-panel{position:fixed;left:22px;bottom:88px;z-index:301;width:330px;max-width:calc(100vw - 44px);background:var(--cream);border:1px solid var(--glass-brd);border-radius:18px;overflow:hidden;box-shadow:0 30px 70px -20px rgba(40,50,15,.5);display:none;flex-direction:column}
+.chat-panel.open{display:flex;animation:tfade .3s ease}
+.chat-head{padding:16px 18px;background:linear-gradient(135deg,var(--lime-2),var(--lime-deep));display:flex;align-items:center;gap:11px;color:#fff}
+.chat-head .av{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.22);display:grid;place-items:center;font-weight:700;font-family:"Space Grotesk"}
+.chat-head b{font-family:"Space Grotesk";font-size:15px;display:block;line-height:1.2}
+.chat-head span{font-size:12px;opacity:.9}
+.chat-head .x{margin-left:auto;cursor:pointer;opacity:.9;font-size:20px;background:none;border:0;color:#fff;line-height:1}
+.chat-body{padding:16px;display:flex;flex-direction:column;gap:11px;max-height:300px;overflow-y:auto}
+.msg{max-width:82%;padding:11px 14px;border-radius:14px;font-size:14px;line-height:1.45;word-wrap:break-word;overflow-wrap:anywhere}
+.msg.bot{background:var(--beige-2);border:1px solid var(--line);align-self:flex-start;border-bottom-left-radius:4px}
+.msg.user{background:linear-gradient(135deg,var(--lime-2),var(--lime));color:var(--ink);align-self:flex-end;border-bottom-right-radius:4px}
+.chat-quick{display:flex;gap:8px;flex-wrap:wrap;padding:0 16px 12px}
+.chat-quick button{font-size:12.5px;padding:7px 12px;border-radius:999px;background:var(--beige-2);border:1px solid var(--glass-brd);color:var(--lime-deep);cursor:pointer;font-family:"DM Sans";transition:.2s}
+.chat-quick button:hover{border-color:var(--lime-2);color:var(--ink)}
+.chat-input{display:flex;gap:8px;padding:12px 14px;border-top:1px solid var(--line)}
+.chat-input input{flex:1;padding:11px 13px;border-radius:10px;background:var(--beige-2);border:1px solid var(--glass-brd);color:var(--ink);font-family:"DM Sans";font-size:14px}
+.chat-input input:focus{outline:none;border-color:var(--lime-2)}
+.chat-input button{width:42px;border-radius:10px;border:0;background:linear-gradient(135deg,var(--lime-2),var(--lime-deep));color:#fff;cursor:pointer;display:grid;place-items:center}
+.chat-input svg{width:18px;height:18px}
+
+/* ============================================================
+   Nova — streaming, typing dots, rich cards, lead form
+   ============================================================ */
+.msg{white-space:pre-wrap}
+.msg.typing{display:inline-flex;gap:4px;align-items:center;padding:12px 14px;max-width:none}
+.msg.typing span{width:7px;height:7px;border-radius:50%;background:var(--lime-2);animation:nova-typing 1s infinite ease-in-out}
+.msg.typing span:nth-child(2){animation-delay:.15s}
+.msg.typing span:nth-child(3){animation-delay:.3s}
+@keyframes nova-typing{0%,60%,100%{transform:translateY(0);opacity:.4}30%{transform:translateY(-4px);opacity:1}}
+.msg-link{color:var(--lime-deep);font-weight:700;text-decoration:underline;text-underline-offset:2px}
+
+.nova-cards{display:flex;flex-direction:column;gap:8px;margin:2px 0 4px;align-self:stretch}
+.nova-card{border:1px solid var(--glass-brd);background:var(--beige-2);border-radius:16px;padding:12px 14px;text-align:left;width:100%;animation:nova-pop .3s var(--ease-out) both}
+@keyframes nova-pop{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.nova-svc{display:flex;align-items:flex-start;gap:10px;cursor:pointer;font-family:inherit;transition:border-color .2s,transform .15s,box-shadow .25s}
+.nova-svc:hover{border-color:var(--lime-2);transform:translateY(-1px);box-shadow:0 10px 24px -16px rgba(77,124,15,.5)}
+.nova-svc-main{flex:1;min-width:0}
+.nova-svc-name{font-family:"Space Grotesk";font-weight:600;font-size:14px;color:var(--ink)}
+.nova-svc-short{font-size:12.5px;color:var(--ink-soft);margin-top:2px;line-height:1.4}
+.nova-svc-meta{font-size:12px;font-weight:600;color:var(--lime-deep);margin-top:6px}
+.nova-arrow{flex:0 0 auto;color:var(--lime-2);margin-top:3px;transition:transform .2s}
+.nova-arrow svg{width:15px;height:15px}
+.nova-svc:hover .nova-arrow{transform:translateX(2px);color:var(--lime-deep)}
+.nova-case-industry{font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--lime-deep)}
+.nova-case-headline{font-family:"Space Grotesk";font-weight:600;font-size:13.5px;color:var(--ink);margin-top:3px}
+.nova-case-result{font-size:12.5px;color:var(--ink-soft);margin-top:4px;line-height:1.45}
+.nova-cta{display:inline-flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:12px 16px;border-radius:14px;border:0;cursor:pointer;font-family:"Space Grotesk";font-weight:600;font-size:14px;color:#fff;background:linear-gradient(135deg,#6aa717,#4D7C0F);box-shadow:0 10px 24px -14px rgba(77,124,15,.7);text-decoration:none;transition:transform .15s,box-shadow .25s}
+.nova-cta:hover{transform:translateY(-1px);box-shadow:0 16px 34px -14px rgba(77,124,15,.8)}
+.nova-cta svg{width:17px;height:17px}
+.nova-leadform{display:flex;flex-direction:column;gap:8px;border:1px solid var(--glass-brd);background:var(--beige-2);border-radius:16px;padding:12px}
+.nova-leadform input{width:100%;padding:10px 12px;border-radius:10px;border:1px solid var(--glass-brd);background:var(--cream);font-family:"DM Sans";font-size:13.5px;color:var(--ink)}
+.nova-leadform input:focus{outline:none;border-color:var(--lime-2);box-shadow:0 0 0 3px rgba(132,204,22,.2)}
+.nova-leadform.nova-invalid input:placeholder-shown{border-color:#d98a8a}
+.nova-ok{border:1px solid var(--lime-2);background:rgba(132,204,22,.14);border-radius:14px;padding:12px 14px;font-size:13px;color:var(--lime-deep);line-height:1.5}
+.nova-ok-link{color:var(--lime-deep);font-weight:700;text-decoration:underline}
+
+/* ===== responsive.css ===== */
+/* ============================================================
+   responsive.css — breakpoints + reduced-motion (load LAST)
+   ============================================================ */
+@media(max-width:980px){
+  .menu{display:none}.burger{display:inline-flex}.call-btn span{display:none}
+  .svc-grid,.portfolio,.pricing{grid-template-columns:1fr 1fr}
+  .stats{grid-template-columns:1fr 1fr}
+  .why,.about,.contact{grid-template-columns:1fr;gap:34px}
+  .foot{grid-template-columns:1fr 1fr}.tilt > *{transform:none}
+}
+@media(max-width:620px){
+  .block{padding:70px 0}.hero{padding:120px 0 60px;min-height:88vh}
+  .svc-grid,.portfolio,.pricing,.grid2c,.vv{grid-template-columns:1fr}
+  .stats{grid-template-columns:1fr 1fr}
+  .cta-banner{padding:44px 24px}.foot{grid-template-columns:1fr}
+  .cform{padding:22px}.chat-fab span{display:none}.chat-fab{padding:14px}
+  .hero-strip{gap:22px}
+}
+
+/* Respect users who prefer less motion */
+@media(prefers-reduced-motion:reduce){
+  *{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.001ms !important;scroll-behavior:auto !important}
+  .reveal{opacity:1 !important;transform:none !important}
+  .marquee-track{animation:none !important}
+  .lp{stroke-dashoffset:0 !important}.lnode{transform:scale(1) !important}.globe{opacity:1 !important}
+  .load-word,.load-tag,.load-bar,.load-pct{opacity:1 !important}
+  .scroll-cue,.cta-orbit{display:none}
+}
+
+/* ===== mobile-fixes.css ===== */
+/* mobile-fixes.css — additive phone/tablet refinements (minified) */
+@media (max-width:760px){.hero{min-height:100vh;min-height:100svh}}@media (max-width:760px){#showcase-canvas{position:relative;top:0;height:58vh;height:58svh}.showcase-rail{margin-top:0}.sc-step{min-height:auto;margin:0 16px;padding:26px 0 40px;text-align:left !important;align-items:flex-start !important}.sc-step p{font-size:15.5px}.sc-hint{margin-top:0;bottom:12px}}@media (min-width:761px) and (max-width:980px){#showcase-canvas{height:80vh;height:80svh;top:10vh}.showcase-rail{margin-top:-80vh;margin-top:-80svh}.sc-step{min-height:86vh;min-height:86svh}}@media (max-width:760px){html,body{max-width:100%;overflow-x:hidden}.wrap{overflow-x:clip}}@media (max-width:620px){.btn{padding:14px 20px}.menu-was-open,.mobile-menu a{padding-top:14px;padding-bottom:14px}.floats{right:14px;bottom:14px}.chat-fab{left:14px;bottom:14px}.fab{width:50px;height:50px}.fab svg{width:24px;height:24px}}@media (max-width:420px){.hero h1{font-size:clamp(34px,11vw,46px)}.hero-strip{gap:16px}.hero-strip b{font-size:18px}}@media (max-width:760px){.glass,header.scrolled,.mobile-menu,.chat-panel{-webkit-backdrop-filter:none !important;backdrop-filter:none !important}.glass{background:linear-gradient(180deg,rgba(255,253,248,.93),rgba(251,247,238,.85))}header.scrolled{background:rgba(251,247,238,.95)}.mobile-menu{background:rgba(251,247,238,.98)}.chat-panel{background:var(--cream)}.bg-fx .blob{display:none}.bg-fx::before{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(40% 30% at 16% 10%,rgba(194,217,138,.32),transparent 72%),radial-gradient(38% 30% at 86% 28%,rgba(231,220,192,.38),transparent 72%),radial-gradient(44% 34% at 55% 94%,rgba(196,210,145,.24),transparent 72%)}}
+
+/* ===== consistency.css ===== */
+/* consistency.css — additive cross-OS/browser normalizer (minified) */
+html{-webkit-text-size-adjust:100%;-moz-text-size-adjust:100%;text-size-adjust:100%;-webkit-tap-highlight-color:transparent}html,body,button,input,select,textarea{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility;font-synthesis:none}button,input,select,textarea{font-family:inherit;font-size:100%;line-height:inherit;margin:0}button{-webkit-appearance:none;appearance:none}input,textarea{-webkit-appearance:none;appearance:none;border-radius:0}select{-webkit-appearance:none;-moz-appearance:none;appearance:none}textarea{overflow:auto}::placeholder{opacity:1;color:var(--ink-soft)}input[type="search"]::-webkit-search-decoration{-webkit-appearance:none}input{accent-color:var(--lime-2)}img,svg,video,canvas{max-width:100%;height:auto}canvas{height:auto}*,*::before,*::after{box-sizing:border-box}html,body{overscroll-behavior-y:none}body{font-family:"DM Sans","DM Sans Fallback",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif}h1,h2,h3,h4,.display,.brand,.eyebrow,.btn{font-family:"Space Grotesk","Space Grotesk Fallback",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif}
+
+/* ===== variations.css ===== */
+/* ============================================================
+   variations.css — ADDITIVE "fresh on every refresh" animation set.
+   js/variations.js picks a random data-anim on <body> each load and
+   these rules give that load a different entrance feel. Loaded last.
+   Reduced-motion users are unaffected (responsive.css disables it).
+   ============================================================ */
+:root {
+  --reveal-dur: .7s;
+  --reveal-ease: cubic-bezier(.16, 1, .3, 1);
+}
+
+/* Apply the per-load duration/easing + animate filter for the blur variant. */
+body[data-anim] .reveal {
+  transition:
+    opacity var(--reveal-dur) var(--reveal-ease),
+    transform var(--reveal-dur) var(--reveal-ease),
+    filter var(--reveal-dur) var(--reveal-ease);
+}
+
+/* The six entrance "flavors" — each is the FROM state before .in. */
+body[data-anim="0"] .reveal { transform: translateY(32px); }
+body[data-anim="1"] .reveal { transform: translateX(-38px); }
+body[data-anim="2"] .reveal { transform: translateX(38px); }
+body[data-anim="3"] .reveal { transform: scale(.9); }
+body[data-anim="4"] .reveal { transform: translateY(26px) scale(.96); filter: blur(7px); }
+body[data-anim="5"] .reveal { transform: translateY(22px) rotate(-2.2deg); }
+
+/* Final state — must out-specify the flavor rules so cards always land. */
+body[data-anim] .reveal.in { transform: none; filter: none; }
+
+/* Per-load marquee speed (js sets --mq). Longhand overrides the shorthand. */
+.marquee-track { animation-duration: var(--mq, 48s); }
+
+/* ===== water-flow.css ===== */
+/* ============================================================
+   water-flow.css — ADDITIVE. Liquid "water flow" motion.
+   • Buttons (.btn): continuous flowing sheen + water wave that
+     rises on hover/focus + click ripple (span from water-ripple.js).
+   • Placeholders: flowing text shimmer + flowing focus glow on
+     contact-form and chat inputs.
+   Purely cosmetic. Uses existing lime tokens. Loads LAST.
+   Fully disabled under prefers-reduced-motion.
+   ============================================================ */
+
+/* ---------- BUTTONS: layering so effects sit under the label ---------- */
+.btn{position:relative;overflow:hidden;isolation:isolate}
+.btn > svg{position:relative;z-index:1}   /* keep icon above the water layers */
+
+/* 1) Continuous flowing sheen — a soft highlight drifting across */
+.btn::before{
+  content:"";position:absolute;top:-60%;left:0;width:42%;height:220%;
+  background:linear-gradient(100deg,transparent 0%,rgba(255,255,255,.45) 50%,transparent 100%);
+  transform:translateX(-160%) rotate(9deg);filter:blur(3px);
+  z-index:-1;pointer-events:none;
+  animation:wf-sheen 4.8s ease-in-out infinite;
+}
+.btn-ghost::before{
+  background:linear-gradient(100deg,transparent 0%,rgba(132,204,22,.42) 50%,transparent 100%);
+}
+@keyframes wf-sheen{
+  0%{transform:translateX(-160%) rotate(9deg)}
+  60%,100%{transform:translateX(380%) rotate(9deg)}
+}
+
+/* 2) Water wave that rises to fill on hover / keyboard focus */
+.btn::after{
+  content:"";position:absolute;left:50%;bottom:-165%;width:200%;aspect-ratio:1/1;
+  transform:translateX(-50%);border-radius:43% 47% 44% 46%;
+  background:radial-gradient(circle at 50% 35%,rgba(163,230,53,.55),rgba(132,204,22,.26) 60%,transparent 72%);
+  opacity:0;z-index:-1;pointer-events:none;
+  transition:bottom .55s var(--ease-out),opacity .4s ease;
+}
+.btn:hover::after,
+.btn:focus-visible::after{bottom:-72%;opacity:1;animation:wf-wave 5s linear infinite}
+@keyframes wf-wave{to{transform:translateX(-50%) rotate(360deg)}}
+
+/* 3) Click ripple — span injected by js/water-ripple.js */
+.wf-ripple{
+  position:absolute;border-radius:50%;pointer-events:none;z-index:0;
+  transform:translate(-50%,-50%) scale(0);
+  background:radial-gradient(circle,rgba(255,255,255,.50) 0%,rgba(163,230,53,.28) 45%,transparent 70%);
+  animation:wf-ripple-go .6s ease-out forwards;
+}
+.btn-primary .wf-ripple{
+  background:radial-gradient(circle,rgba(255,255,255,.6) 0%,rgba(226,242,191,.35) 45%,transparent 70%);
+}
+@keyframes wf-ripple-go{to{transform:translate(-50%,-50%) scale(1);opacity:0}}
+
+/* Ripple containment for the pill buttons we also enhance */
+.filters button,.chat-quick button{position:relative;overflow:hidden}
+
+/* ---------- PLACEHOLDERS: flowing text shimmer ---------- */
+.field input::placeholder,
+.field textarea::placeholder,
+.chat-input input::placeholder{
+  color:#9aba55;opacity:.85;
+  animation:wf-ph 3.6s ease-in-out infinite;
+}
+@keyframes wf-ph{
+  0%,100%{color:#a7c267;opacity:.65}
+  50%{color:#5f8f1a;opacity:1}
+}
+
+/* ---------- FIELDS: flowing "water" focus glow ---------- */
+.field input:focus,
+.field select:focus,
+.field textarea:focus,
+.chat-input input:focus{
+  border-color:var(--lime-2);
+  animation:wf-focus 2.6s ease-in-out infinite;
+}
+@keyframes wf-focus{
+  0%,100%{box-shadow:0 0 0 3px rgba(132,204,22,.22),0 0 14px -2px rgba(132,204,22,.25);border-color:var(--lime-2)}
+  50%{box-shadow:0 0 0 3px rgba(79,112,22,.32),0 0 20px -2px rgba(163,230,53,.42);border-color:var(--lime-deep)}
+}
+
+/* invalid state stays clearly red — overrides the flow while focused */
+.field.invalid input:focus,
+.field.invalid select:focus,
+.field.invalid textarea:focus{
+  animation:none;border-color:#b91c1c;box-shadow:0 0 0 3px rgba(185,28,28,.18);
+}
+
+/* ---------- Respect prefers-reduced-motion ---------- */
+@media (prefers-reduced-motion:reduce){
+  .btn::before,.btn::after{animation:none!important;transition:none!important;opacity:0!important}
+  .wf-ripple{display:none!important}
+  .field input::placeholder,
+  .field textarea::placeholder,
+  .chat-input input::placeholder{animation:none!important;color:#7d9a3f!important;opacity:.85!important}
+  .field input:focus,.field select:focus,.field textarea:focus,.chat-input input:focus{animation:none!important}
+}
+
+/* ===== bubbles.css ===== */
+/* ============================================================
+   bubbles.css — ADDITIVE. Site-wide "bubble" UI/UX:
+   pill eyebrows, bubblier rounded cards, speech-bubble
+   testimonials, softer fields, and the CTA 3D-bubble canvas
+   layering. Pure styling — no layout structure changes.
+   Loads after water-flow.css; re-themes via the --r token.
+   ============================================================ */
+
+/* 1) Bubblier corners everywhere the radius token is used */
+:root{ --r:26px; }
+
+/* 2) Eyebrows become soft bubble pills (present in every section) */
+.eyebrow{
+  background:rgba(132,204,22,.14);
+  border:1px solid var(--glass-brd);
+  padding:7px 15px;border-radius:999px;line-height:1;
+}
+
+/* 3) Round the common card families a touch more */
+.plan,.qa,.svc-grid > *,.portfolio > *,.why-visual,.vv .card,.cform,.glass{
+  border-radius:26px;
+}
+.qa{overflow:hidden}
+
+/* 4) Pills / chips fully rounded */
+.pill,.vchip,.tech-chip,.flag{border-radius:999px}
+
+/* 5) Testimonials as a real speech bubble */
+.tslider{background:transparent;border:0;box-shadow:none;-webkit-backdrop-filter:none;backdrop-filter:none}
+.tcard q{quotes:none}
+.tcard blockquote{
+  position:relative;display:inline-block;max-width:620px;margin:0 auto;
+  background:var(--cream);border:1px solid var(--glass-brd);border-radius:26px;
+  padding:26px 30px;box-shadow:var(--shadow);
+}
+.tcard blockquote::after{
+  content:"";position:absolute;left:50%;bottom:-11px;
+  width:22px;height:22px;background:var(--cream);
+  border-right:1px solid var(--glass-brd);border-bottom:1px solid var(--glass-brd);
+  border-bottom-right-radius:7px;transform:translateX(-50%) rotate(45deg);
+}
+.tcard .who{margin-top:30px}
+
+/* 6) Form fields a little bubblier to match */
+.field input,.field select,.field textarea,.chat-input input{border-radius:14px}
+
+/* 7) CTA 3D bubble canvas — sits behind the banner text */
+#bubbles-canvas{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;will-change:transform;contain:layout style paint}
+.cta-banner h2,.cta-banner p,.cta-banner .hero-cta{position:relative;z-index:2}
+
+/* ===== refine.css ===== */
+/* ============================================================
+   refine.css — ADDITIVE craft pass ("elevate the current look").
+   Typographic rhythm, hierarchy, tactile states, motion polish and
+   accessibility. Non-destructive; loads last. Brand palette unchanged.
+   ============================================================ */
+
+/* Crisper text rendering + graceful wrapping (progressive enhancement) */
+body { text-rendering: optimizeLegibility; -moz-osx-font-smoothing: grayscale; }
+p { text-wrap: pretty; }
+h1, h2, h3, h4, .display { text-wrap: balance; }
+
+/* Headings: refined optical tracking */
+h1 { letter-spacing: -.03em; }
+h2 { letter-spacing: -.022em; }
+.sec-head h2 { letter-spacing: -.025em; }
+.sec-head p { max-width: 54ch; margin-left: auto; margin-right: auto; }
+
+/* Eyebrow: crisper micro-label */
+.eyebrow { font-size: 12px; letter-spacing: .16em; }
+
+/* Prose links: comfortable underline offset */
+.cinfo .row a, .foot ul a, .msg-link { text-underline-offset: 3px; }
+
+/* Buttons: springier, more tactile */
+.btn { transition: transform .16s var(--ease-spring), box-shadow .25s, background .25s, border-color .2s; }
+.btn:active { transform: translateY(1px) scale(.99); }
+
+/* Consistent card lift + accent on hover */
+.svc:hover, .plan:hover, .vv .card:hover {
+  transform: translateY(-3px);
+  border-color: var(--lime-2);
+  box-shadow: var(--glow);
+}
+
+/* Stronger, more elegant focus ring (keeps accessibility high) */
+:focus-visible {
+  outline: 2px solid var(--lime-2);
+  outline-offset: 3px;
+  box-shadow: 0 0 0 4px rgba(132, 204, 22, .18);
+  border-radius: 8px;
+}
+
+/* A touch more vertical air on large screens */
+@media (min-width: 981px) { .block { padding: 104px 0; } }
+
+/* Respect reduced-motion for the added transitions */
+@media (prefers-reduced-motion: reduce) {
+  .btn, .svc, .plan, .vv .card { transition: none !important; }
+}
+
+/* ===== fallback.css ===== */
+/* ============================================================
+   fallback.css — visuals for the standalone 2D page (2d.html).
+
+   Replaces the WebGL hero / showcase / CTA canvases with pure
+   CSS + SVG motion so the site still feels alive with zero 3D.
+   Reduced-motion users get a calm, static version.
+   ============================================================ */
+
+/* A small badge so it's clear this is the lightweight experience. */
+.fx-badge{
+  position:fixed;left:50%;top:14px;transform:translateX(-50%);
+  z-index:9998;display:inline-flex;align-items:center;gap:8px;
+  padding:7px 14px;border-radius:999px;font-family:"Space Grotesk";font-weight:600;
+  font-size:12px;letter-spacing:.02em;color:var(--lime-deep);
+  background:var(--glass);border:1px solid var(--glass-brd);
+  -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);box-shadow:var(--shadow);
+}
+.fx-badge a{color:var(--lime-deep);font-weight:700;text-decoration:underline;text-underline-offset:2px}
+.fx-badge .dot{width:8px;height:8px;border-radius:50%;background:var(--lime-2)}
+@media (prefers-reduced-motion: no-preference){.fx-badge .dot{animation:m-pulse 1.6s ease-in-out infinite}}
+@media (max-width:620px){.fx-badge{font-size:11px;padding:6px 11px}}
+
+/* ---------- 2D animated hero backdrop ---------- */
+.fx2d{position:absolute;inset:0;z-index:0;overflow:hidden;pointer-events:none}
+.fx2d .aura{
+  position:absolute;inset:-10%;
+  background:
+    radial-gradient(38% 34% at 22% 26%,rgba(194,217,138,.55),transparent 70%),
+    radial-gradient(40% 36% at 82% 30%,rgba(138,171,60,.35),transparent 72%),
+    radial-gradient(50% 40% at 50% 100%,rgba(159,187,99,.4),transparent 72%);
+  filter:blur(10px);
+}
+@media (prefers-reduced-motion: no-preference){.fx2d .aura{animation:fx-aura 16s ease-in-out infinite alternate}}
+@keyframes fx-aura{from{transform:translate3d(-2%, -1%,0) scale(1.02)}to{transform:translate3d(2%,2%,0) scale(1.08)}}
+
+/* floating polygons that echo the 3D crystals */
+.fx2d .poly{position:absolute;opacity:.5;filter:drop-shadow(0 12px 30px rgba(77,124,15,.25))}
+.fx2d .poly svg{display:block;width:100%;height:100%}
+.fx2d .poly path,.fx2d .poly polygon{fill:rgba(138,163,92,.28);stroke:rgba(156,187,99,.7);stroke-width:1.5}
+.fx2d .p1{width:150px;height:150px;left:6%;top:20%}
+.fx2d .p2{width:210px;height:210px;right:5%;top:14%}
+.fx2d .p3{width:120px;height:120px;left:12%;bottom:14%}
+.fx2d .p4{width:96px;height:96px;right:16%;bottom:12%}
+.fx2d .p5{width:74px;height:74px;left:48%;top:8%}
+@media (prefers-reduced-motion: no-preference){
+  .fx2d .poly{animation:fx-spin 26s linear infinite,m-float 8s ease-in-out infinite}
+  .fx2d .p2{animation-duration:34s,7s}
+  .fx2d .p3{animation-duration:22s,9s}
+  .fx2d .p4{animation-direction:reverse,normal}
+  .fx2d .p5{animation-duration:18s,6s}
+}
+@keyframes fx-spin{to{transform:rotate(360deg)}}
+
+/* subtle star dust */
+.fx2d .dust{position:absolute;inset:0;background-image:radial-gradient(rgba(120,150,60,.5) 1px,transparent 1.4px);background-size:46px 46px;opacity:.35;
+  -webkit-mask-image:radial-gradient(70% 60% at 50% 40%,#000,transparent);mask-image:radial-gradient(70% 60% at 50% 40%,#000,transparent)}
+@media (prefers-reduced-motion: no-preference){.fx2d .dust{animation:fx-drift 40s linear infinite}}
+@keyframes fx-drift{to{background-position:46px 92px}}
+
+/* ---------- 2D "assembling crystal" for the showcase ---------- */
+.fx-crystal{position:relative;width:min(340px,74vw);aspect-ratio:1;margin:8px auto 0}
+.fx-crystal svg{width:100%;height:100%;overflow:visible}
+.fx-crystal .ring{fill:none;stroke:rgba(156,187,99,.6);stroke-width:1.4}
+.fx-crystal .face{fill:rgba(138,171,60,.22);stroke:rgba(159,187,99,.85);stroke-width:1.6;transform-origin:center}
+.fx-crystal .core{fill:rgba(138,163,92,.5);stroke:var(--lime-2);stroke-width:2}
+.fx-crystal .spark{fill:var(--lime)}
+@media (prefers-reduced-motion: no-preference){
+  .fx-crystal .rot{transform-origin:center;animation:fx-spin 22s linear infinite}
+  .fx-crystal .rot.rev{animation:fx-spin 30s linear infinite reverse}
+  .fx-crystal .core{animation:fx-core 4s ease-in-out infinite}
+  .fx-crystal .spark{animation:m-pulse 2.4s ease-in-out infinite}
+  .fx-crystal .spark.s2{animation-delay:.7s}
+  .fx-crystal .spark.s3{animation-delay:1.4s}
+}
+@keyframes fx-core{0%,100%{opacity:.75;transform:scale(1)}50%{opacity:1;transform:scale(1.06)}}
+
+/* showcase becomes a normal, non-pinned section on the 2D page */
+.fx2d-showcase{padding:80px 0}
+.fx2d-showcase .showcase-rail{margin-top:0}
+.fx2d-showcase .sc-step{min-height:auto;text-align:center;align-items:center;margin:0 auto 10px;max-width:720px}
+
+/* CTA banner backdrop (replaces bubbles canvas) */
+.fx-bubbles{position:absolute;inset:0;overflow:hidden;pointer-events:none;border-radius:inherit}
+.fx-bubbles span{position:absolute;bottom:-40px;border-radius:50%;background:radial-gradient(circle at 30% 30%,rgba(255,255,255,.6),rgba(194,217,138,.25));border:1px solid rgba(255,255,255,.35)}
+@media (prefers-reduced-motion: no-preference){.fx-bubbles span{animation:fx-rise linear infinite}}
+@keyframes fx-rise{to{transform:translateY(-140%) translateX(var(--dx,0));opacity:0}}
+
+/* ===== live iframe previews in portfolio (desktop) ===== */
+.pthumb-live{position:absolute;inset:0;overflow:hidden;z-index:1;opacity:0;transition:opacity .7s var(--ease-out)}
+.pthumb-live.is-live{opacity:1}
+.pthumb-live iframe{position:absolute;top:0;left:0;border:0;transform-origin:top left;pointer-events:none;background:var(--beige)}
+
+/* ===== Hide the scrollbar entirely (scrolling still works) ===== */
+*{scrollbar-width:none;-ms-overflow-style:none}
+*::-webkit-scrollbar{width:0;height:0;display:none;background:transparent}
+
+/* ===== no-WebGL safety only (body.no-3d): if a device truly has no WebGL,
+   hide the dead canvases and collapse the empty scroll showcase. Full 3D runs
+   on every WebGL-capable device (phones included) — same as desktop. ===== */
+body.no-3d #showcase-canvas,body.no-3d #hero-canvas,body.no-3d #bubbles-canvas{display:none}
+body.no-3d .showcase{min-height:auto;height:auto}
+body.no-3d .showcase-rail{margin-top:0}
